@@ -1,0 +1,32 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "no-underscore-dangle": "off",
+    "new-cap": "off",
+    "import/no-extraneous-dependencies": "off",
+    "class-methods-use-this": "off",
+    "comma-dangle": ["error", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+    }]
+  },
+  "env": {
+    "mocha": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": { 
+    "Polymer": true,
+    "sinon": true,
+    "flush": true,
+    "expect": true,
+    "fixture": true,
+    "DtToolsBehavior": true,
+    "DtPagesBehavior": true,
+    "moment": true,
+    "assert": true
+  }
+}

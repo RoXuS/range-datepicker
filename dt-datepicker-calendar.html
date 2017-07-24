@@ -1,0 +1,86 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+
+<link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+
+<link rel="import" href="moment-import.html">
+<link rel="import" href="dt-datepicker-cell.html">
+
+<dom-module id="dt-datepicker-calendar">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+       :host {
+        @apply --paper-font-common-base;
+        display: block;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th {
+        @apply --paper-font-caption;
+        color: rgb(117, 117, 117);
+        font-size: 11px;
+      }
+
+      td {
+        padding: 0;
+      }
+
+      td.enabled {
+        border: 1px solid rgb(228, 231, 231);
+      }
+
+      td.enabled:hover {
+        border: 1px double #d4d9d9;
+      }
+
+      .monthName {
+        @apply --paper-font-title;
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .monthName::first-letter {
+        text-transform: uppercase;
+      }
+    </style>
+
+    <div>
+      <div class="monthName">
+        <paper-icon-button icon="chevron-left" on-tap="_handlePrevMonth"></paper-icon-button>
+        [[_computeCurrentMonthName(month, year)]]
+        <paper-icon-button icon="chevron-right" on-tap="_handleNextMonth"></paper-icon-button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <template is="dom-repeat" items="[[_dayNamesOfTheWeek]]" as="dayNameOfWeek">
+              <th>[[dayNameOfWeek]]</th>
+            </template>
+          </tr>
+        </thead>
+        <tbody>
+          <template is="dom-repeat" items="[[_daysOfMonth]]" as="week">
+            <tr>
+              <template is="dom-repeat" items="[[week]]" as="dayOfMonth">
+                <td class$="[[_tdIsEnabled(dayOfMonth)]]">
+                  <template is="dom-if" if="[[dayOfMonth]]">
+                    <dt-datepicker-cell month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[_hoveredDate]]" date-to="[[_dateTo]]" date-from="[[_dateFrom]]" on-date-is-selected="_handleDateSelected" day="[[dayOfMonth]]"></dt-datepicker-cell>
+                  </template>
+                </td>
+              </template>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+
+  </template>
+
+  <script src="dt-datepicker-calendar.js"></script>
+</dom-module>
