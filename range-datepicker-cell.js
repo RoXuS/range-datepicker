@@ -20,12 +20,6 @@ class RangeDatepickerCell extends Polymer.Element {
     };
   }
 
-  ready() {
-    super.ready();
-    this.addEventListener('click', this._handleTap);
-    this.addEventListener('mouseover', this._handleHover);
-  }
-
   static get observers() {
     return ['_dateChanged(dateFrom, dateTo, hoveredDate, day)'];
   }
@@ -50,11 +44,19 @@ class RangeDatepickerCell extends Polymer.Element {
   }
 
   _handleTap() {
-    this.dispatchEvent(new CustomEvent('date-is-selected', { detail: { date: this.day.date } }));
+    this.dispatchEvent(
+      new CustomEvent('date-is-selected', {
+        detail: { date: this.day.date },
+      })
+    );
   }
 
   _handleHover() {
-    this.dispatchEvent(new CustomEvent('date-is-hovered', { detail: { date: this.day.date } }));
+    this.dispatchEvent(
+      new CustomEvent('date-is-hovered', {
+        detail: { date: this.day.date },
+      })
+    );
   }
 
   _isSelected(selected) {

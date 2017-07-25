@@ -37,7 +37,7 @@
       }
     </style>
 
-    <div on-tap="_handleTap" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]]">
+    <div on-click="_handleTap" on-mouseover="_handleHover" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]]">
       <template is="dom-if" if="[[day]]">
         [[day.title]]
       </template>
