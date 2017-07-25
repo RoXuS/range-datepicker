@@ -52,13 +52,13 @@
 
     <div>
       <div class="monthName layout horizontal center">
-        <dom-if if="[[_ifForceNarrow(prev, forceNarrow)]]">
+        <dom-if if="[[_ifNarrow(prev, narrow)]]">
           <template>
             <paper-icon-button icon="chevron-left" on-tap="_handlePrevMonth"></paper-icon-button>
           </template>
         </dom-if>
         <div class="flex">[[_computeCurrentMonthName(month, year)]]</div>
-        <dom-if if="[[_ifForceNarrow(next, forceNarrow)]]">
+        <dom-if if="[[_ifNarrow(next, narrow)]]">
           <template>
             <paper-icon-button icon="chevron-right" on-tap="_handleNextMonth"></paper-icon-button>
           </template>

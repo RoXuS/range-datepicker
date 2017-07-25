@@ -41,7 +41,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
         type: Boolean,
         value: false,
       },
-      forceNarrow: {
+      narrow: {
         type: Boolean,
         value: false,
       },
@@ -154,8 +154,8 @@ class RangeDatepickerCalendar extends Polymer.Element {
     this.dispatchEvent(new CustomEvent('prev-month'));
   }
 
-  _ifForceNarrow(pos, forceNarrow) {
-    if (pos || forceNarrow) {
+  _ifNarrow(pos, narrow) {
+    if (pos || narrow) {
       return true;
     }
     return false;

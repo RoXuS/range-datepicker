@@ -26,6 +26,14 @@ class RangeDatepicker extends Polymer.Element {
         value: false,
       },
       /**
+       * If true, only one month is displayed.
+       */
+      narrow: {
+        type: Boolean,
+        value: false,
+        notify: true,
+      },
+      /**
        * Set locale of the calendar.
        * Default is 'en'.
        */
@@ -93,6 +101,13 @@ class RangeDatepicker extends Polymer.Element {
 
   _monthChanged(month) {
     this._monthPlus = moment(month, 'MM').add(1, 'month').format('MM');
+  }
+
+  _isNarrow(forceNarrow, narrow) {
+    if (forceNarrow || narrow) {
+      return true;
+    }
+    return false;
   }
 }
 
