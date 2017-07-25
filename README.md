@@ -4,9 +4,7 @@
 
 ## &lt;range-datepicker&gt;
 
-![react-dates in action](https://raw.githubusercontent.com/roxus/range-datepicker/master/demo.gif)
-
-Material design: [Surface reaction](https://www.google.com/design/spec/animation/responsive-interaction.html#responsive-interaction-surface-reaction)
+![range-datepicker in action](https://raw.githubusercontent.com/roxus/range-datepicker/master/demo.gif)
 
 `range-datepicker` provides a simple datepicker with range.
 Inspired by [airbnb datepicker](https://github.com/airbnb/react-dates).
