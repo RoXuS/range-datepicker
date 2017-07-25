@@ -1,4 +1,6 @@
 [![Build status](https://travis-ci.org/RoXuS/range-datepicker.svg?branch=master)](https://travis-ci.org/RoXuS/range-datepicker)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/roxus/range-datepicker)
+
 
 ## &lt;range-datepicker&gt;
 
