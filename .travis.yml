@@ -3,6 +3,7 @@ sudo: required
 before_script:
   - npm install -g polymer-cli
   - polymer install --variants
+  - npm install -g eslint-config-airbnb@14.1.0 eslint@3.19.0 eslint-plugin-jsx-a11y@4.0.0 eslint-plugin-import@2.2.0 eslint-plugin-react@6.10.3
 env:
   global:
     - secure: >-
@@ -19,8 +20,6 @@ addons:
       - google-chrome-stable
   sauce_connect: true
 script:
-  - xvfb-run polymer test
-  - >-
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s 'default';
-    fi
+  - eslint .
+  - xvfb-run polymer test --skip-plugin sauce --plugin local -l chrome;
 dist: trusty
