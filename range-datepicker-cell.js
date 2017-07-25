@@ -1,5 +1,7 @@
-class DtDatePickerCell extends Polymer.Element {
-  static get is() { return 'dt-datepicker-cell'; }
+class RangeDatepickerCell extends Polymer.Element {
+  static get is() {
+    return 'range-datepicker-cell';
+  }
   static get properties() {
     return {
       day: Object,
@@ -25,35 +27,26 @@ class DtDatePickerCell extends Polymer.Element {
   }
 
   static get observers() {
-    return [
-      '_dateChanged(dateFrom, dateTo, hoveredDate, day)',
-    ];
+    return ['_dateChanged(dateFrom, dateTo, hoveredDate, day)'];
   }
 
   _dateChanged(dateFrom, dateTo, hoveredDate, day) {
-    console.log('ici')
     this._selected = false;
     this._hovered = false;
-    if (dateTo === day.date || dateFrom === day.date) {
-      this._selected = true;
+    if (day) {
+      if (dateTo === day.date || dateFrom === day.date) {
+        this._selected = true;
+      }
+      if (
+        ((hoveredDate === day.date || day.date < hoveredDate) &&
+          day.date > dateFrom &&
+          !dateTo &&
+          !this._selected) ||
+        (day.date > dateFrom && day.date < dateTo)
+      ) {
+        this._hovered = true;
+      }
     }
-    if (((hoveredDate === day.date || day.date < hoveredDate) && day.date > dateFrom && !dateTo && !this._selected) || (day.date > dateFrom && day.date < dateTo)) {
-      this._hovered = true;
-    }
-
-
-    // if (!(dateTo && dateFrom)) {
-    //   this._hovered = false;
-    // }
-    // this._selected = false;
-    // if (dateTo === this.day.date || dateFrom === this.day.date) {
-    //   this._selected = true;
-    // }
-    // if (dateFrom && hoveredDate && this.day.date && !(dateTo && dateFrom)) {
-    //   if ((hoveredDate === this.day.date || this.day.date < hoveredDate) && this.day.date > dateFrom && !this._selected) {
-    //     this._hovered = true;
-    //   }
-    // }
   }
 
   _handleTap() {
@@ -79,4 +72,4 @@ class DtDatePickerCell extends Polymer.Element {
   }
 }
 
-window.customElements.define(DtDatePickerCell.is, DtDatePickerCell);
+window.customElements.define(RangeDatepickerCell.is, RangeDatepickerCell);

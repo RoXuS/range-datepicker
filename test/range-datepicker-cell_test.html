@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>range-datepicker-cell test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../range-datepicker-cell.html">
+  </head>
+  <body>
+
+    <test-fixture id="rangeDatepickerCell">
+      <template>
+        <range-datepicker-cell></range-datepicker-cell>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('rangeDatepickerCell', function() {
+
+        test('_selected and _hovered are correct', function() {
+          var element = fixture('rangeDatepickerCell');
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged(1, 0, 0, {date: 1});
+          assert.isTrue(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged();
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged(0, undefined, 3, {date: 2});
+          assert.isFalse(element._selected);
+          assert.isTrue(element._hovered);
+          element._dateChanged();
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged(0, 3, undefined, {date: 2});
+          assert.isFalse(element._selected);
+          assert.isTrue(element._hovered);
+          element._dateChanged();
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged(0, 3, undefined, {date: 4});
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged();
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+          element._dateChanged(0, undefined, 3, {date: 4});
+          assert.isFalse(element._selected);
+          assert.isFalse(element._hovered);
+        });
+      });
+    </script>
+
+  </body>
+</html>

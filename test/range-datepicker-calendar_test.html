@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>range-datepicker-calendar test</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <link rel="import" href="../range-datepicker-calendar.html">
+</head>
+
+<body>
+
+  <test-fixture id="rangeDatepickerCalendarNoRange">
+    <template>
+      <range-datepicker-calendar no-range></range-datepicker-calendar>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="rangeDatepickerCalendar">
+    <template>
+      <range-datepicker-calendar></range-datepicker-calendar>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('rangeDatepickerCalendar', function () {
+
+      test('days of month are setted', function () {
+        var element = fixture('rangeDatepickerCalendar');
+        element._yearAndMonthChanged('2017', '07');
+        assert.equal(element._daysOfMonth.length, 6);
+        element._daysOfMonth.forEach(week => {
+          assert.equal(week.length, 7);
+        });
+        assert.equal(element._daysOfMonth[0][0], 0);
+        assert.equal(element._daysOfMonth[0][1], 0);
+        assert.equal(element._daysOfMonth[0][2], 0);
+        assert.equal(element._daysOfMonth[0][3], 0);
+        assert.equal(element._daysOfMonth[0][4], 0);
+        assert.equal(element._daysOfMonth[0][5], 0);
+        assert.equal(element._daysOfMonth[0][6].title, 1);
+        assert.equal(element._daysOfMonth[1][0].title, 2);
+        assert.equal(element._daysOfMonth[5][0].title, 30);
+        assert.equal(element._daysOfMonth[5][1].title, 31);
+        assert.equal(element._daysOfMonth[5][2], 0);
+        assert.equal(element._daysOfMonth[5][3], 0);
+        assert.equal(element._daysOfMonth[5][4], 0);
+        assert.equal(element._daysOfMonth[5][5], 0);
+        assert.equal(element._daysOfMonth[5][6], 0);
+      });
+
+      test('select date no range', function () {
+        var element = fixture('rangeDatepickerCalendarNoRange');
+        element._handleDateSelected({ detail: { date: 1 } });
+        assert.equal(element.dateFrom, 1);
+        assert.equal(element.dateTo, undefined);
+        assert.equal(element.hoveredDate, undefined);
+        element._handleDateSelected({ detail: { date: 2 } });
+        assert.equal(element.dateFrom, 2);
+        assert.equal(element.dateTo, undefined);
+        assert.equal(element.hoveredDate, undefined);
+      });
+
+      test('select date with range', function () {
+        var element = fixture('rangeDatepickerCalendar');
+        element._handleDateSelected({ detail: { date: 1 } });
+        assert.equal(element.dateFrom, 1);
+        assert.equal(element.dateTo, undefined);
+        assert.equal(element.hoveredDate, undefined);
+        element._handleDateSelected({ detail: { date: 2 } });
+        assert.equal(element.dateFrom, 1);
+        assert.equal(element.dateTo, 2);
+        assert.equal(element.hoveredDate, undefined);
+      });
+
+      test('hoveredDate is not setted in no-range', function () {
+        var element = fixture('rangeDatepickerCalendarNoRange');
+        element._handleDateHovered({ detail: { date: 1 } });
+        assert.equal(element.hoveredDate, undefined);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -7,9 +7,9 @@
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="moment-import.html">
-<link rel="import" href="dt-datepicker-cell.html">
+<link rel="import" href="range-datepicker-cell.html">
 
-<dom-module id="dt-datepicker-calendar">
+<dom-module id="range-datepicker-calendar">
   <template>
     <style include="iron-flex iron-flex-alignment">
        :host {
@@ -51,10 +51,18 @@
     </style>
 
     <div>
-      <div class="monthName">
-        <paper-icon-button icon="chevron-left" on-tap="_handlePrevMonth"></paper-icon-button>
-        [[_computeCurrentMonthName(month, year)]]
-        <paper-icon-button icon="chevron-right" on-tap="_handleNextMonth"></paper-icon-button>
+      <div class="monthName layout horizontal center">
+        <dom-if if="[[_ifForceNarrow(prev, forceNarrow)]]">
+          <template>
+            <paper-icon-button icon="chevron-left" on-tap="_handlePrevMonth"></paper-icon-button>
+          </template>
+        </dom-if>
+        <div class="flex">[[_computeCurrentMonthName(month, year)]]</div>
+        <dom-if if="[[_ifForceNarrow(next, forceNarrow)]]">
+          <template>
+            <paper-icon-button icon="chevron-right" on-tap="_handleNextMonth"></paper-icon-button>
+          </template>
+        </dom-if>
       </div>
       <table>
         <thead>
@@ -70,7 +78,9 @@
               <template is="dom-repeat" items="[[week]]" as="dayOfMonth">
                 <td class$="[[_tdIsEnabled(dayOfMonth)]]">
                   <template is="dom-if" if="[[dayOfMonth]]">
-                    <dt-datepicker-cell month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[_hoveredDate]]" date-to="[[_dateTo]]" date-from="[[_dateFrom]]" on-date-is-selected="_handleDateSelected" day="[[dayOfMonth]]"></dt-datepicker-cell>
+                    <range-datepicker-cell month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[hoveredDate]]"
+                      date-to="[[dateTo]]" date-from="[[dateFrom]]" on-date-is-selected="_handleDateSelected"
+                      day="[[dayOfMonth]]"></range-datepicker-cell>
                   </template>
                 </td>
               </template>
@@ -82,5 +92,5 @@
 
   </template>
 
-  <script src="dt-datepicker-calendar.js"></script>
+  <script src="range-datepicker-calendar.js"></script>
 </dom-module>

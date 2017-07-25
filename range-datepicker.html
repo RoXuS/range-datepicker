@@ -1,0 +1,46 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="range-datepicker-calendar.html">
+<link rel="import" href="moment-import.html">
+
+<dom-module id="range-datepicker">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+       :host {
+        display: block;
+      }
+
+      #firstDatePicker {
+        margin-right: 16px;
+      }
+    </style>
+
+    <div class="layout vertical center-justified">
+      <div class="layout horizontal center-justified">
+        <dom-if if="[[!forceNarrow]]">
+          <template>
+            <range-datepicker-calendar prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth" hovered-date="{{hoveredDate}}"
+              date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]" month="[[month]]"
+              year="[[year]]">
+            </range-datepicker-calendar>
+            <range-datepicker-calendar next no-range="[[noRange]]" on-next-month="_handleNextMonth" hovered-date="{{hoveredDate}}"
+              date-to="{{dateTo}}" date-from="{{dateFrom}}" locale="[[locale]]" month="[[_monthPlus]]"
+              year="[[year]]">
+            </range-datepicker-calendar>
+          </template>
+        </dom-if>
+        <dom-if if="[[forceNarrow]]">
+          <template>
+            <range-datepicker-calendar force-narrow="[[forceNarrow]]" on-prev-month="_handlePrevMonth" hovered-date="{{hoveredDate}}"
+              date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]" month="[[month]]"
+              year="[[year]]">
+            </range-datepicker-calendar>
+          </template>
+        </dom-if>
+      </div>
+    </div>
+  </template>
+  <script src="range-datepicker.js"></script>
+</dom-module>

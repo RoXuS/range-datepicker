@@ -1,5 +1,14 @@
-class DtDatepickerCalendar extends Polymer.Element {
-  static get is() { return 'dt-datepicker-calendar'; }
+/**
+ * `range-datepicker-calendar`
+ *
+ * @customElement
+ * @polymer
+ * @demo demo/index.html
+ */
+class RangeDatepickerCalendar extends Polymer.Element {
+  static get is() {
+    return 'range-datepicker-calendar';
+  }
   static get properties() {
     return {
       month: String,
@@ -14,8 +23,28 @@ class DtDatepickerCalendar extends Polymer.Element {
         value: 'en',
         observer: '_localeChanged',
       },
-      _dateTo: Number,
-      _dateFrom: Number,
+      dateTo: {
+        type: Number,
+        notify: true,
+      },
+      prev: Boolean,
+      next: Boolean,
+      dateFrom: {
+        type: Number,
+        notify: true,
+      },
+      hoveredDate: {
+        type: Number,
+        notify: true,
+      },
+      noRange: {
+        type: Boolean,
+        value: false,
+      },
+      forceNarrow: {
+        type: Boolean,
+        value: false,
+      },
     };
   }
 
@@ -24,9 +53,7 @@ class DtDatepickerCalendar extends Polymer.Element {
   }
 
   static get observers() {
-    return [
-      '_yearAndMonthChanged(year, month)',
-    ]
+    return ['_yearAndMonthChanged(year, month)'];
   }
 
   ready() {
@@ -53,7 +80,11 @@ class DtDatepickerCalendar extends Polymer.Element {
           }
         }
 
-        columns.push({ hover: false, date: parseInt(startDate.format('X'), 10), title: parseInt(startDate.format('D'), 10) });
+        columns.push({
+          hover: false,
+          date: parseInt(startDate.format('X'), 10),
+          title: parseInt(startDate.format('D'), 10),
+        });
 
         if (dayNumber === lastDayOfWeek) {
           rows.push(columns.slice());
@@ -63,7 +94,11 @@ class DtDatepickerCalendar extends Polymer.Element {
         startDate.add(1, 'day');
 
         if (startDate.format('DD/MM/YYYY') === endDate.format('DD/MM/YYYY')) {
-          columns.push({ hover: false, date: parseInt(startDate.format('X'), 10), title: parseInt(startDate.format('D'), 10) });
+          columns.push({
+            hover: false,
+            date: parseInt(startDate.format('X'), 10),
+            title: parseInt(startDate.format('D'), 10),
+          });
           for (let i = dayNumber % lastDayOfWeek; i < lastDayOfWeek - firstDayOfWeek; i += 1) {
             columns.push(0);
           }
@@ -76,7 +111,7 @@ class DtDatepickerCalendar extends Polymer.Element {
   }
 
   _computeCurrentMonthName(month, year) {
-    return moment(`${month}/${year}`, 'MM/YYYY').format('MMMM YYYY')
+    return moment(`${month}/${year}`, 'MM/YYYY').format('MMMM YYYY');
   }
 
   _tdIsEnabled(day) {
@@ -88,29 +123,43 @@ class DtDatepickerCalendar extends Polymer.Element {
 
   _handleDateSelected(event) {
     const date = event.detail.date;
-    if (this._dateFrom && this._dateTo) {
-      this._dateFrom = date;
-      this._dateTo = undefined;
-    } else {
-      if (!this._dateFrom || (this._dateFrom && date < this._dateFrom)) {
-        this._dateFrom = date;
-      } else if (!this._dateTo || (this._dateTo && date > this._dateTo)) {
-        this._dateTo = date;
+    if (!this.noRange) {
+      if (this.dateFrom && this.dateTo) {
+        this.dateFrom = date;
+        this.dateTo = 0;
+        this.hoveredDate = undefined;
+      } else if (!this.dateFrom || (this.dateFrom && date < this.dateFrom)) {
+        this.dateFrom = date;
+      } else if (!this.dateTo || (this.dateTo && date > this.dateTo)) {
+        this.dateTo = date;
       }
+    } else {
+      this.dateFrom = date;
     }
   }
 
   _handleDateHovered(event) {
-    this._hoveredDate = event.detail.date;
+    if (!this.noRange) {
+      this.hoveredDate = event.detail.date;
+    }
   }
 
   _handleNextMonth() {
     this.month = moment(this.month, 'MM').add(1, 'month').format('MM');
+    this.dispatchEvent(new CustomEvent('next-month'));
   }
 
   _handlePrevMonth() {
     this.month = moment(this.month, 'MM').subtract(1, 'month').format('MM');
+    this.dispatchEvent(new CustomEvent('prev-month'));
+  }
+
+  _ifForceNarrow(pos, forceNarrow) {
+    if (pos || forceNarrow) {
+      return true;
+    }
+    return false;
   }
 }
 
-window.customElements.define(DtDatepickerCalendar.is, DtDatepickerCalendar);
+window.customElements.define(RangeDatepickerCalendar.is, RangeDatepickerCalendar);

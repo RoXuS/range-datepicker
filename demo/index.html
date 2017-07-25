@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>dt-datepicker demo</title>
+    <title>range-datepicker demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../dt-datepicker.html">
+    <link rel="import" href="../range-datepicker.html">
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -19,10 +19,37 @@
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic dt-datepicker demo</h3>
+      <h3>Basic range-datepicker range</h3>
       <demo-snippet>
         <template>
-          <dt-datepicker locale="fr"></dt-datepicker>
+          <range-datepicker></range-datepicker>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic range-datepicker no-range</h3>
+      <demo-snippet>
+        <template>
+          <range-datepicker no-range></range-datepicker>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic range-datepicker forceNarrow</h3>
+      <demo-snippet>
+        <template>
+          <range-datepicker no-range force-narrow></range-datepicker>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic range-datepicker range with locale</h3>
+      <demo-snippet>
+        <template>
+          <range-datepicker locale="fr"></range-datepicker>
         </template>
       </demo-snippet>
     </div>
