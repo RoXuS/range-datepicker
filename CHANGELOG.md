@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.5](https://github.com/RoXuS/range-datepicker/tree/0.0.5) (2017-07-25)
+- Fix events listeners ([commit](https://github.com/RoXuS/range-datepicker/commit/ce935f2a))
+
 ## [v0.0.4](https://github.com/RoXuS/range-datepicker/tree/0.0.4) (2017-07-25)
 - Use locales locally and not globally ([commit](https://github.com/RoXuS/range-datepicker/commit/0be8940))
 - Update README ([commit](https://github.com/RoXuS/range-datepicker/commit/c5faf04))
