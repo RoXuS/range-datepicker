@@ -49,28 +49,23 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _localeChanged(locale) {
-    moment.locale(locale);
+    this.set('_dayNamesOfTheWeek', moment.localeData(locale).weekdaysMin());
   }
 
   static get observers() {
     return ['_yearAndMonthChanged(year, month)'];
   }
 
-  ready() {
-    super.ready();
-    this.set('_dayNamesOfTheWeek', moment.weekdaysMin(true));
-  }
-
   _yearAndMonthChanged(year, month) {
     if (year && month) {
-      const startDate = moment([year, month - 1]);
-      const endDate = moment(startDate).endOf('month');
+      const startDate = moment([year, month - 1]).locale(this.locale);
+      const endDate = moment(startDate).locale(this.locale).endOf('month');
 
       const rows = [];
       let columns = [];
 
-      const firstDayOfWeek = moment.localeData().firstDayOfWeek();
-      const lastDayOfWeek = 6 + moment.localeData().firstDayOfWeek();
+      const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
+      const lastDayOfWeek = 6 + moment.localeData(this.locale).firstDayOfWeek();
 
       while (startDate.format('DD/MM/YYYY') !== endDate.format('DD/MM/YYYY')) {
         const dayNumber = startDate.isoWeekday();
@@ -111,7 +106,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _computeCurrentMonthName(month, year) {
-    return moment(`${month}/${year}`, 'MM/YYYY').format('MMMM YYYY');
+    return moment(`${month}/${year}`, 'MM/YYYY').locale(this.locale).format('MMMM YYYY');
   }
 
   _tdIsEnabled(day) {
@@ -145,12 +140,12 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _handleNextMonth() {
-    this.month = moment(this.month, 'MM').add(1, 'month').format('MM');
+    this.month = moment(this.month, 'MM').locale(this.locale).add(1, 'month').format('MM');
     this.dispatchEvent(new CustomEvent('next-month'));
   }
 
   _handlePrevMonth() {
-    this.month = moment(this.month, 'MM').subtract(1, 'month').format('MM');
+    this.month = moment(this.month, 'MM').locale(this.locale).subtract(1, 'month').format('MM');
     this.dispatchEvent(new CustomEvent('prev-month'));
   }
 

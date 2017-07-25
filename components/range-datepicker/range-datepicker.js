@@ -82,7 +82,8 @@ class RangeDatepicker extends Polymer.Element {
   }
 
   _localeChanged(locale) {
-    moment.locale(locale);
+    this.month = moment().locale(locale).format('MM');
+    this.year = moment().locale(locale).format('YYYY');
   }
 
   _handlePrevMonth() {
@@ -93,14 +94,8 @@ class RangeDatepicker extends Polymer.Element {
     this.shadowRoot.querySelector('range-datepicker-calendar[prev]')._handleNextMonth();
   }
 
-  ready() {
-    super.ready();
-    this.month = moment().format('MM');
-    this.year = moment().format('YYYY');
-  }
-
   _monthChanged(month) {
-    this._monthPlus = moment(month, 'MM').add(1, 'month').format('MM');
+    this._monthPlus = moment(month, 'MM').locale(this.locale).add(1, 'month').format('MM');
   }
 
   _isNarrow(forceNarrow, narrow) {

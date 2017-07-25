@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.0.4](https://github.com/RoXuS/range-datepicker/tree/0.0.4) (2017-07-25)
+- Use locales locally and not globally ([commit](https://github.com/RoXuS/range-datepicker/commit/0be8940))
+- Update README ([commit](https://github.com/RoXuS/range-datepicker/commit/c5faf04))
+- Force narrow on mobile view ([commit](https://github.com/RoXuS/range-datepicker/commit/b1c3f5f))
+- Update Readme.md ([commit](https://github.com/RoXuS/range-datepicker/commit/b174163))
+
 ## [v0.0.3](https://github.com/RoXuS/range-datepicker/tree/0.0.3) (2017-07-25)
 - Expose date from and date to ([commit](https://github.com/RoXuS/range-datepicker/commit/efe0478))
 
