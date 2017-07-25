@@ -19,9 +19,8 @@ Inspired by [airbnb datepicker](https://github.com/airbnb/react-dates).
     <link rel="import" href="range-datepicker.html">
     <style is="custom-style">
       div {
-        height: 100px;
+        height: 320px;
         width: 100%;
-        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
       }
     </style>
     <next-code-block></next-code-block>
