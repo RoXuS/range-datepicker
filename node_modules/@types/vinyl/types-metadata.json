@@ -1,0 +1,28 @@
+{
+    "authors": "vvakame <https://github.com/vvakame/>, jedmao <https://github.com/jedmao>, Georgii Dolzhykov <https://github.com/thorn0>",
+    "libraryDependencies": [
+        "node"
+    ],
+    "moduleDependencies": [
+        "fs"
+    ],
+    "libraryMajorVersion": 2,
+    "libraryMinorVersion": 0,
+    "libraryName": "vinyl",
+    "typingsPackageName": "vinyl",
+    "projectName": "https://github.com/gulpjs/vinyl",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "ProperModule",
+    "globals": [
+        "File"
+    ],
+    "declaredModules": [
+        "vinyl"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "b875b3cdca65a3045dc53944d75b5ddebe77a1f002096abddad689645786e89e"
+}

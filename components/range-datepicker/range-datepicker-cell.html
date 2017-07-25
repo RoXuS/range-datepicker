@@ -1,0 +1,49 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../paper-styles/typography.html">
+
+<link rel="import" href="moment-import.html">
+
+<dom-module id="range-datepicker-cell">
+  <template>
+    <style include="iron-flex iron-flex-alignment">
+       :host {
+        @apply --paper-font-common-base;
+        display: block;
+      }
+
+      div {
+        text-align: center;
+        height: 38px;
+        width: 38px;
+      }
+
+      div:hover {
+        background: #e4e7e7;
+        cursor: pointer;
+      }
+
+      div.hovered {
+        background: rgba(0, 150, 136, 0.5);
+        color: white;
+      }
+
+      div.selected {
+        background: rgb(0, 150, 136);
+        color: white;
+      }
+    </style>
+
+    <div on-tap="_handleTap" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]]">
+      <template is="dom-if" if="[[day]]">
+        [[day.title]]
+      </template>
+    </div>
+
+  </template>
+
+  <script src="range-datepicker-cell.js"></script>
+</dom-module>

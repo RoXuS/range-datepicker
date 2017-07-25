@@ -1,0 +1,25 @@
+{
+    "authors": "vvakame <https://github.com/vvakame>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [],
+    "moduleDependencies": [],
+    "libraryMajorVersion": "1",
+    "libraryMinorVersion": "0",
+    "libraryName": "which 1.0.8",
+    "typingsPackageName": "which",
+    "projectName": "https://github.com/isaacs/node-which",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "ProperModule",
+    "globals": [
+        "when"
+    ],
+    "declaredModules": [
+        "which"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "8bc777a5654cf691ff14d89b10d3960d38420faed9ba9bffeadbc1d56aca5f72"
+}
