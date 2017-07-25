@@ -49,6 +49,27 @@ class RangeDatepicker extends Polymer.Element {
        * Default is current year.
        */
       year: String,
+      /**
+       * Date from.
+       * Format is Unix timestamp.
+       */
+      dateFrom: {
+        type: String,
+        notify: true,
+      },
+      /**
+       * Date to.
+       * Format is Unix timestamp.
+       */
+      dateTo: {
+        type: String,
+        notify: true,
+      },
+      /**
+       * Current hovered date.
+       * Format is Unix timestamp.
+       */
+      _hoveredDate: String,
     };
   }
 

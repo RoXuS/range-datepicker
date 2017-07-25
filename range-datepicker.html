@@ -21,11 +21,11 @@
       <div class="layout horizontal center-justified">
         <dom-if if="[[!forceNarrow]]">
           <template>
-            <range-datepicker-calendar prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth" hovered-date="{{hoveredDate}}"
+            <range-datepicker-calendar prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth" hovered-date="{{_hoveredDate}}"
               date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]" month="[[month]]"
               year="[[year]]">
             </range-datepicker-calendar>
-            <range-datepicker-calendar next no-range="[[noRange]]" on-next-month="_handleNextMonth" hovered-date="{{hoveredDate}}"
+            <range-datepicker-calendar next no-range="[[noRange]]" on-next-month="_handleNextMonth" hovered-date="{{_hoveredDate}}"
               date-to="{{dateTo}}" date-from="{{dateFrom}}" locale="[[locale]]" month="[[_monthPlus]]"
               year="[[year]]">
             </range-datepicker-calendar>
@@ -33,7 +33,7 @@
         </dom-if>
         <dom-if if="[[forceNarrow]]">
           <template>
-            <range-datepicker-calendar force-narrow="[[forceNarrow]]" on-prev-month="_handlePrevMonth" hovered-date="{{hoveredDate}}"
+            <range-datepicker-calendar force-narrow="[[forceNarrow]]" on-prev-month="_handlePrevMonth" hovered-date="{{_hoveredDate}}"
               date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]" month="[[month]]"
               year="[[year]]">
             </range-datepicker-calendar>

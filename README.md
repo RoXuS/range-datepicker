@@ -28,7 +28,7 @@ Inspired by [airbnb datepicker](https://github.com/airbnb/react-dates).
 -->
 ```html
 <div>
-  <range-datepicker></range-datepicker>
+  <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
   <range-datepicker no-range></range-datepicker>
   <range-datepicker no-range force-narrow></range-datepicker>
   <range-datepicker locale="fr"></range-datepicker>

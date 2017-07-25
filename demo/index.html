@@ -1,57 +1,67 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>range-datepicker demo</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <title>range-datepicker demo</title>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../range-datepicker.html">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
-    </custom-style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic range-datepicker range</h3>
-      <demo-snippet>
-        <template>
-          <range-datepicker></range-datepicker>
-        </template>
-      </demo-snippet>
-    </div>
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../range-datepicker.html">
 
-    <div class="vertical-section-container centered">
-      <h3>Basic range-datepicker no-range</h3>
-      <demo-snippet>
-        <template>
-          <range-datepicker no-range></range-datepicker>
-        </template>
-      </demo-snippet>
-    </div>
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
 
-    <div class="vertical-section-container centered">
-      <h3>Basic range-datepicker forceNarrow</h3>
-      <demo-snippet>
-        <template>
-          <range-datepicker no-range force-narrow></range-datepicker>
-        </template>
-      </demo-snippet>
-    </div>
+    </style>
+  </custom-style>
+</head>
 
-    <div class="vertical-section-container centered">
-      <h3>Basic range-datepicker range with locale</h3>
-      <demo-snippet>
-        <template>
-          <range-datepicker locale="fr"></range-datepicker>
-        </template>
-      </demo-snippet>
-    </div>
-  </body>
+<body>
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker range</h3>
+    <demo-snippet>
+      <template>
+        <dom-bind>
+          <template>
+            <div>Date from : [[dateFrom]]</div>
+            <div>Date to : [[dateTo]]</div>
+            <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+          </template>
+        </dom-bind>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker no-range</h3>
+    <demo-snippet>
+      <template>
+        <range-datepicker no-range></range-datepicker>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker forceNarrow</h3>
+    <demo-snippet>
+      <template>
+        <range-datepicker no-range force-narrow></range-datepicker>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker range with locale</h3>
+    <demo-snippet>
+      <template>
+        <range-datepicker locale="fr"></range-datepicker>
+      </template>
+    </demo-snippet>
+  </div>
+</body>
+
 </html>
