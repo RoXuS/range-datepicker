@@ -141,11 +141,17 @@ class RangeDatepickerCalendar extends Polymer.Element {
 
   _handleNextMonth() {
     this.month = moment(this.month, 'MM').locale(this.locale).add(1, 'month').format('MM');
+    if (this.month === '01') {
+      this.year = moment(this.year, 'YYYY').locale(this.locale).add(1, 'year').format('YYYY');
+    }
     this.dispatchEvent(new CustomEvent('next-month'));
   }
 
   _handlePrevMonth() {
     this.month = moment(this.month, 'MM').locale(this.locale).subtract(1, 'month').format('MM');
+    if (this.month === '12') {
+      this.year = moment(this.year, 'YYYY').locale(this.locale).subtract(1, 'year').format('YYYY');
+    }
     this.dispatchEvent(new CustomEvent('prev-month'));
   }
 
