@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.6](https://github.com/RoXuS/range-datepicker/tree/0.0.6) (2017-07-26)
+- Handle range/no-range switch ([commit](https://github.com/RoXuS/range-datepicker/commit/42de4cad))
+- Remove horizontal align ([commit](https://github.com/RoXuS/range-datepicker/commit/d3fa8bf9))
+
 ## [v0.0.5](https://github.com/RoXuS/range-datepicker/tree/0.0.5) (2017-07-25)
 - Fix events listeners ([commit](https://github.com/RoXuS/range-datepicker/commit/ce935f2a))
 
