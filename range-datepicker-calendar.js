@@ -51,8 +51,12 @@ class RangeDatepickerCalendar extends Polymer.Element {
   _localeChanged(locale) {
     const dayNamesOfTheWeek = moment.localeData(locale).weekdaysMin();
     const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
-    const tmp = dayNamesOfTheWeek.splice(0, firstDayOfWeek);
-    this.set('_dayNamesOfTheWeek', dayNamesOfTheWeek.concat(tmp));
+    const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
+    const newDayNamesOfTheWeek = dayNamesOfTheWeek
+      .slice()
+      .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
+      .concat(tmp);
+    this.set('_dayNamesOfTheWeek', newDayNamesOfTheWeek);
   }
 
   static get observers() {
@@ -67,16 +71,10 @@ class RangeDatepickerCalendar extends Polymer.Element {
       const rows = [];
       let columns = [];
 
-      const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
       const lastDayOfWeek = 6;
 
       while (startDate.format('DD/MM/YYYY') !== endDate.format('DD/MM/YYYY')) {
         const dayNumber = startDate.weekday();
-        if (rows.length === 0 && columns.length === 0 && dayNumber !== firstDayOfWeek) {
-          for (let i = firstDayOfWeek; i < dayNumber + firstDayOfWeek; i += 1) {
-            columns.push(0);
-          }
-        }
 
         columns.push({
           hover: false,
@@ -85,6 +83,9 @@ class RangeDatepickerCalendar extends Polymer.Element {
         });
 
         if (dayNumber === lastDayOfWeek) {
+          for (let i = columns.length; i < lastDayOfWeek + 1; i += 1) {
+            columns.unshift(0);
+          }
           rows.push(columns.slice());
           columns = [];
         }
@@ -97,7 +98,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
             date: parseInt(startDate.format('X'), 10),
             title: parseInt(startDate.format('D'), 10),
           });
-          for (let i = dayNumber % lastDayOfWeek; i < lastDayOfWeek - firstDayOfWeek; i += 1) {
+          for (let i = columns.length; i <= lastDayOfWeek; i += 1) {
             columns.push(0);
           }
           rows.push(columns.slice());
