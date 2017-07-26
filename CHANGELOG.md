@@ -1,5 +1,10 @@
 # Change Log
 
+## [v0.0.7](https://github.com/RoXuS/range-datepicker/tree/0.0.7) (2017-07-26)
+- Simplify fill of empty tds ([commit](https://github.com/RoXuS/range-datepicker/commit/e6102ee))
+- Fi some bug link to locales ([commit](https://github.com/RoXuS/range-datepicker/commit/fb526e0))
+- Fix year switch ([commit](https://github.com/RoXuS/range-datepicker/commit/db5c8f3))
+
 ## [v0.0.6](https://github.com/RoXuS/range-datepicker/tree/0.0.6) (2017-07-26)
 - Handle range/no-range switch ([commit](https://github.com/RoXuS/range-datepicker/commit/42de4cad))
 - Remove horizontal align ([commit](https://github.com/RoXuS/range-datepicker/commit/d3fa8bf9))
