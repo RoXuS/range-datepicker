@@ -17,6 +17,7 @@ class RangeDatepicker extends Polymer.Element {
       noRange: {
         type: Boolean,
         value: false,
+        observer: '_noRangeChanged',
       },
       /**
        * Force display one month.
@@ -82,8 +83,12 @@ class RangeDatepicker extends Polymer.Element {
   }
 
   _localeChanged(locale) {
-    this.month = moment().locale(locale).format('MM');
-    this.year = moment().locale(locale).format('YYYY');
+    if (!this.month) {
+      this.month = moment().locale(locale).format('MM');
+    }
+    if (!this.year) {
+      this.year = moment().locale(locale).format('YYYY');
+    }
   }
 
   _handlePrevMonth() {
@@ -103,6 +108,13 @@ class RangeDatepicker extends Polymer.Element {
       return true;
     }
     return false;
+  }
+
+  _noRangeChanged(isNoRange, wasNoRange) {
+    if (!wasNoRange && isNoRange) {
+      this.dateTo = undefined;
+      this._hoveredDate = undefined;
+    }
   }
 }
 

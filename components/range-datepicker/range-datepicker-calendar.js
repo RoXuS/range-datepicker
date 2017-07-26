@@ -49,7 +49,14 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _localeChanged(locale) {
-    this.set('_dayNamesOfTheWeek', moment.localeData(locale).weekdaysMin());
+    const dayNamesOfTheWeek = moment.localeData(locale).weekdaysMin();
+    const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
+    const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
+    const newDayNamesOfTheWeek = dayNamesOfTheWeek
+      .slice()
+      .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
+      .concat(tmp);
+    this.set('_dayNamesOfTheWeek', newDayNamesOfTheWeek);
   }
 
   static get observers() {
@@ -64,16 +71,10 @@ class RangeDatepickerCalendar extends Polymer.Element {
       const rows = [];
       let columns = [];
 
-      const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
-      const lastDayOfWeek = 6 + moment.localeData(this.locale).firstDayOfWeek();
+      const lastDayOfWeek = 6;
 
       while (startDate.format('DD/MM/YYYY') !== endDate.format('DD/MM/YYYY')) {
-        const dayNumber = startDate.isoWeekday();
-        if (rows.length === 0 && columns.length === 0 && dayNumber !== firstDayOfWeek) {
-          for (let i = firstDayOfWeek; i < dayNumber; i += 1) {
-            columns.push(0);
-          }
-        }
+        const dayNumber = startDate.weekday();
 
         columns.push({
           hover: false,
@@ -82,6 +83,9 @@ class RangeDatepickerCalendar extends Polymer.Element {
         });
 
         if (dayNumber === lastDayOfWeek) {
+          for (let i = columns.length; i < lastDayOfWeek + 1; i += 1) {
+            columns.unshift(0);
+          }
           rows.push(columns.slice());
           columns = [];
         }
@@ -94,7 +98,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
             date: parseInt(startDate.format('X'), 10),
             title: parseInt(startDate.format('D'), 10),
           });
-          for (let i = dayNumber % lastDayOfWeek; i < lastDayOfWeek - firstDayOfWeek; i += 1) {
+          for (let i = columns.length; i <= lastDayOfWeek; i += 1) {
             columns.push(0);
           }
           rows.push(columns.slice());
@@ -141,11 +145,17 @@ class RangeDatepickerCalendar extends Polymer.Element {
 
   _handleNextMonth() {
     this.month = moment(this.month, 'MM').locale(this.locale).add(1, 'month').format('MM');
+    if (this.month === '01') {
+      this.year = moment(this.year, 'YYYY').locale(this.locale).add(1, 'year').format('YYYY');
+    }
     this.dispatchEvent(new CustomEvent('next-month'));
   }
 
   _handlePrevMonth() {
     this.month = moment(this.month, 'MM').locale(this.locale).subtract(1, 'month').format('MM');
+    if (this.month === '12') {
+      this.year = moment(this.year, 'YYYY').locale(this.locale).subtract(1, 'year').format('YYYY');
+    }
     this.dispatchEvent(new CustomEvent('prev-month'));
   }
 

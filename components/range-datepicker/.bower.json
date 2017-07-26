@@ -30,11 +30,11 @@
     "polymer": "^2.0.0"
   },
   "homepage": "https://github.com/RoXuS/range-datepicker",
-  "_release": "9f05d2945f",
+  "_release": "83c06110b2",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "9f05d2945f4bbce32c2385d066ccefb597ffc74b"
+    "commit": "83c06110b23457e1caeaac0b2237cdde9447bea9"
   },
   "_source": "https://github.com/RoXuS/range-datepicker.git",
   "_target": "master",
