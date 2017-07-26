@@ -83,8 +83,12 @@ class RangeDatepicker extends Polymer.Element {
   }
 
   _localeChanged(locale) {
-    this.month = moment().locale(locale).format('MM');
-    this.year = moment().locale(locale).format('YYYY');
+    if (!this.month) {
+      this.month = moment().locale(locale).format('MM');
+    }
+    if (!this.year) {
+      this.year = moment().locale(locale).format('YYYY');
+    }
   }
 
   _handlePrevMonth() {
