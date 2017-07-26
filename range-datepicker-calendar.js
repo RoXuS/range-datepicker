@@ -12,7 +12,10 @@ class RangeDatepickerCalendar extends Polymer.Element {
   static get properties() {
     return {
       month: String,
-      year: String,
+      year: {
+        type: String,
+        notify: true,
+      },
       _dayNamesOfTheWeek: {
         type: Array,
         value: [],
@@ -110,7 +113,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _computeCurrentMonthName(month, year) {
-    return moment(`${month}/${year}`, 'MM/YYYY').locale(this.locale).format('MMMM YYYY');
+    return moment(`${month}/${year}`, 'MM/YYYY').locale(this.locale).format('MMMM');
   }
 
   _tdIsEnabled(day) {
@@ -144,19 +147,73 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _handleNextMonth() {
+    const tbody = this.shadowRoot.querySelector('tbody');
+    const monthName = this.shadowRoot.querySelector('.monthName > div');
+    tbody.classList.add('withTransition');
+    tbody.classList.add('moveToLeft');
+    monthName.classList.add('withTransition');
+    monthName.classList.add('moveToLeft');
+
     this.month = moment(this.month, 'MM').locale(this.locale).add(1, 'month').format('MM');
     if (this.month === '01') {
       this.year = moment(this.year, 'YYYY').locale(this.locale).add(1, 'year').format('YYYY');
     }
     this.dispatchEvent(new CustomEvent('next-month'));
+
+    setTimeout(() => {
+      tbody.classList.remove('withTransition');
+      tbody.classList.add('moveToRight');
+      tbody.classList.remove('moveToLeft');
+      monthName.classList.remove('withTransition');
+      monthName.classList.add('moveToRight');
+      monthName.classList.remove('moveToLeft');
+
+      setTimeout(() => {
+        tbody.classList.add('withTransition');
+        tbody.classList.remove('moveToRight');
+        monthName.classList.add('withTransition');
+        monthName.classList.remove('moveToRight');
+        setTimeout(() => {
+          tbody.classList.remove('withTransition');
+          monthName.classList.remove('withTransition');
+        }, 100);
+      }, 100);
+    }, 100);
   }
 
   _handlePrevMonth() {
+    const tbody = this.shadowRoot.querySelector('tbody');
+    const monthName = this.shadowRoot.querySelector('.monthName > div');
+    tbody.classList.add('withTransition');
+    tbody.classList.add('moveToRight');
+    monthName.classList.add('withTransition');
+    monthName.classList.add('moveToRight');
+
     this.month = moment(this.month, 'MM').locale(this.locale).subtract(1, 'month').format('MM');
     if (this.month === '12') {
       this.year = moment(this.year, 'YYYY').locale(this.locale).subtract(1, 'year').format('YYYY');
     }
     this.dispatchEvent(new CustomEvent('prev-month'));
+
+    setTimeout(() => {
+      tbody.classList.remove('withTransition');
+      tbody.classList.add('moveToLeft');
+      tbody.classList.remove('moveToRight');
+      monthName.classList.remove('withTransition');
+      monthName.classList.add('moveToLeft');
+      monthName.classList.remove('moveToRight');
+
+      setTimeout(() => {
+        tbody.classList.add('withTransition');
+        tbody.classList.remove('moveToLeft');
+        monthName.classList.add('withTransition');
+        monthName.classList.remove('moveToLeft');
+        setTimeout(() => {
+          monthName.classList.remove('withTransition');
+          monthName.classList.remove('withTransition');
+        }, 100);
+      }, 100);
+    }, 100);
   }
 
   _ifNarrow(pos, narrow) {
@@ -164,6 +221,16 @@ class RangeDatepickerCalendar extends Polymer.Element {
       return true;
     }
     return false;
+  }
+
+  ready() {
+    super.ready();
+    const yearsList = [];
+    for (let i = 1970; i <= 2100; i += 1) {
+      yearsList.push(i);
+    }
+    this.set('_yearsList', yearsList);
+    console.log(this._yearslist);
   }
 }
 
