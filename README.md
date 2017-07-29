@@ -6,6 +6,11 @@
 ![range-datepicker in action](https://raw.githubusercontent.com/roxus/range-datepicker/master/demo.gif)
 
 `range-datepicker` provides a simple datepicker with range.
+
+### Install
+
+    bower install range-datepicker
+
 Inspired by [airbnb datepicker](https://github.com/airbnb/react-dates).
 
 [See live demo](https://roxus.github.io/range-datepicker/components/range-datepicker/demo/)
