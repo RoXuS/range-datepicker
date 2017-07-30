@@ -1,6 +1,7 @@
 {
   "name": "range-datepicker",
   "main": "range-datepicker.html",
+  "version": "0.0.9",
   "authors": [
     "Julien Rousseau <RoXuS>"
   ],
@@ -19,7 +20,13 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
     "iron-icons": "PolymerElements/iron-icons#^2.0.1",
-    "iron-media-query": "PolymerElements/iron-media-query#^2.0.0"
+    "iron-media-query": "PolymerElements/iron-media-query#^2.0.0",
+    "iron-list": "PolymerElements/iron-list#^2.0.7",
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
+    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0",
+    "neon-animation": "PolymerElements/neon-animation#^2.0.1",
+    "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
@@ -29,15 +36,15 @@
   "resolutions": {
     "polymer": "^2.0.0"
   },
-  "homepage": "https://github.com/RoXuS/range-datepicker",
-  "_release": "83c06110b2",
+  "homepage": "https://github.com/roxus/range-datepicker",
+  "_release": "0.0.9",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "83c06110b23457e1caeaac0b2237cdde9447bea9"
+    "type": "version",
+    "tag": "0.0.9",
+    "commit": "c105e8a3d03aa0001f8ac7302915c4d3ff106871"
   },
-  "_source": "https://github.com/RoXuS/range-datepicker.git",
-  "_target": "master",
-  "_originalSource": "RoXuS/range-datepicker",
+  "_source": "https://github.com/roxus/range-datepicker.git",
+  "_target": "^0.0.9",
+  "_originalSource": "roxus/range-datepicker",
   "_direct": true
 }

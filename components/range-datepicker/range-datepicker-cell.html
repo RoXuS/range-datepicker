@@ -13,26 +13,29 @@
        :host {
         @apply --paper-font-common-base;
         display: block;
+        width: 38px;
       }
 
       div {
         text-align: center;
         height: 38px;
         width: 38px;
+        margin: 0;
+        padding: 0;
       }
 
       div:hover {
-        background: #e4e7e7;
+        background: var(--range-datepicker-cell-hover, #e4e7e7);
         cursor: pointer;
       }
 
       div.hovered {
-        background: rgba(0, 150, 136, 0.5);
+        background: var(--range-datepicker-cell-hovered, rgba(0, 150, 136, 0.5));
         color: white;
       }
 
       div.selected {
-        background: rgb(0, 150, 136);
+        background: var(--range-datepicker-cell-selected, rgb(0, 150, 136));
         color: white;
       }
     </style>

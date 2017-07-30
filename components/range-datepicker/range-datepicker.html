@@ -20,34 +20,31 @@
 
     <iron-media-query query="(max-width: 650px)" query-matches="{{narrow}}"></iron-media-query>
 
-    <div class="layout vertical center-justified">
-      <div class="layout horizontal">
-        <dom-if if="[[!forceNarrow]]">
+    <dom-if if="[[!forceNarrow]]">
+      <template>
+        <dom-if if="[[!narrow]]">
           <template>
-            <dom-if if="[[!narrow]]">
-              <template>
-                <range-datepicker-calendar prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth" hovered-date="{{_hoveredDate}}"
-                  date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]"
-                  month="[[month]]" year="[[year]]">
+            <div class="layout vertical center-justified">
+              <div class="layout horizontal">
+                <range-datepicker-calendar prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth" hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}"
+                  date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]" month="[[month]]" year="{{year}}">
                 </range-datepicker-calendar>
-                <range-datepicker-calendar next no-range="[[noRange]]" on-next-month="_handleNextMonth" hovered-date="{{_hoveredDate}}"
-                  date-to="{{dateTo}}" date-from="{{dateFrom}}" locale="[[locale]]" month="[[_monthPlus]]"
-                  year="[[year]]">
+                <range-datepicker-calendar next no-range="[[noRange]]" on-next-month="_handleNextMonth" hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}"
+                  date-from="{{dateFrom}}" locale="[[locale]]" month="[[_monthPlus]]" year="{{year}}">
                 </range-datepicker-calendar>
-              </template>
-            </dom-if>
+              </div>
+            </div>
           </template>
         </dom-if>
-        <dom-if if="[[_isNarrow(forceNarrow, narrow)]]">
-          <template>
-            <range-datepicker-calendar narrow="[[_isNarrow(forceNarrow, narrow)]]" hovered-date="{{_hoveredDate}}"
-              date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker" locale="[[locale]]" month="[[month]]"
-              year="[[year]]">
-            </range-datepicker-calendar>
-          </template>
-        </dom-if>
-      </div>
-    </div>
+      </template>
+    </dom-if>
+    <dom-if if="[[_isNarrow(forceNarrow, narrow)]]">
+      <template>
+        <range-datepicker-calendar narrow="[[_isNarrow(forceNarrow, narrow)]]" hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}"
+          date-from="{{dateFrom}}" locale="[[locale]]" month="[[month]]" year="[[year]]">
+        </range-datepicker-calendar>
+      </template>
+    </dom-if>
   </template>
   <script src="range-datepicker.js"></script>
 </dom-module>

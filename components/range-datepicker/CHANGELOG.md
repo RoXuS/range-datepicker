@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.0.9](https://github.com/RoXuS/range-datepicker/tree/0.0.9) (2017-07-30)
+- Some graphicals fix, add css mixin to customize cells ([commit](https://github.com/RoXuS/range-datepicker/commit/f17f4e4))
+- Update readme ([commit](https://github.com/RoXuS/range-datepicker/commit/b773670))
+
+## [v0.0.8](https://github.com/RoXuS/range-datepicker/tree/0.0.8) (2017-07-28)
+- Dropdown to change year, some graphical change, animation ([commit](https://github.com/RoXuS/range-datepicker/commit/fc17304))
+
 ## [v0.0.7](https://github.com/RoXuS/range-datepicker/tree/0.0.7) (2017-07-26)
 - Simplify fill of empty tds ([commit](https://github.com/RoXuS/range-datepicker/commit/e6102ee))
 - Fi some bug link to locales ([commit](https://github.com/RoXuS/range-datepicker/commit/fb526e0))
