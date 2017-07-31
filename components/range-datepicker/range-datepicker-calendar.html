@@ -21,6 +21,7 @@
        :host {
         @apply --paper-font-common-base;
         display: block;
+        width: 266px;
       }
 
        :host>div {
@@ -50,6 +51,7 @@
 
       .monthName {
         @apply --paper-font-title;
+        width: 266px;
         margin: 10px 0;
         text-align: center;
       }
@@ -131,15 +133,24 @@
           <div>
             [[_computeCurrentMonthName(month, year)]]
           </div>
-          <paper-dropdown-menu no-label-float>
-            <paper-listbox slot="dropdown-content" selected="{{year}}" attr-for-selected="data-name">
-              <dom-repeat items="[[_yearsList]]" as="yearList">
-                <template>
-                  <paper-item data-name$="[[yearList]]">[[yearList]]</paper-item>
-                </template>
-              </dom-repeat>
-            </paper-listbox>
-          </paper-dropdown-menu>
+          <dom-if if="[[enableYearChange]]">
+            <template>
+              <paper-dropdown-menu no-label-float>
+                <paper-listbox slot="dropdown-content" selected="{{year}}" attr-for-selected="data-name">
+                  <dom-repeat items="[[_yearsList]]" as="yearList">
+                    <template>
+                      <paper-item data-name$="[[yearList]]">[[yearList]]</paper-item>
+                    </template>
+                  </dom-repeat>
+                </paper-listbox>
+              </paper-dropdown-menu>
+            </template>
+          </dom-if>
+          <dom-if if="[[!enableYearChange]]">
+            <template>
+              [[year]]
+            </template>
+          </dom-if>
         </div>
         <dom-if if="[[_ifNarrow(next, narrow)]]">
           <template>
@@ -161,8 +172,9 @@
               <template is="dom-repeat" items="[[week]]" as="dayOfMonth">
                 <td class$="[[_tdIsEnabled(dayOfMonth)]]">
                   <template is="dom-if" if="[[dayOfMonth]]">
-                    <range-datepicker-cell month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[hoveredDate]]" date-to="[[dateTo]]"
-                      date-from="[[dateFrom]]" on-date-is-selected="_handleDateSelected" day="[[dayOfMonth]]"></range-datepicker-cell>
+                    <range-datepicker-cell month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[hoveredDate]]"
+                      date-to="[[dateTo]]" date-from="[[dateFrom]]" on-date-is-selected="_handleDateSelected"
+                      day="[[dayOfMonth]]"></range-datepicker-cell>
                   </template>
                 </td>
               </template>

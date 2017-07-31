@@ -29,9 +29,18 @@
           <template>
             <div>Date from : [[dateFrom]]</div>
             <div>Date to : [[dateTo]]</div>
-            <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+            <range-datepicker month="12" date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
           </template>
         </dom-bind>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker with option to change year</h3>
+    <demo-snippet>
+      <template>
+        <range-datepicker enable-year-change></range-datepicker>
       </template>
     </demo-snippet>
   </div>
@@ -49,7 +58,9 @@
     <h3>Basic range-datepicker forceNarrow</h3>
     <demo-snippet>
       <template>
-        <range-datepicker no-range force-narrow></range-datepicker>
+        <div class="horizontal-section-container centered">
+          <range-datepicker no-range force-narrow></range-datepicker>
+        </div>
       </template>
     </demo-snippet>
   </div>
