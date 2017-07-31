@@ -48,6 +48,15 @@ class RangeDatepickerCalendar extends Polymer.Element {
         type: Boolean,
         value: false,
       },
+      _yearsList: {
+        type: Array,
+        value: [],
+      },
+      enableYearChange: {
+        type: Boolean,
+        value: false,
+        observer: '_enableYearChangeChanged',
+      },
     };
   }
 
@@ -230,7 +239,10 @@ class RangeDatepickerCalendar extends Polymer.Element {
       yearsList.push(i);
     }
     this.set('_yearsList', yearsList);
-    console.log(this._yearslist);
+  }
+
+  _enableYearChangeChanged(enableYearChange) {
+    this.narrow = enableYearChange;
   }
 }
 

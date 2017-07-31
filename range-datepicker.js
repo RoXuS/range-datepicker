@@ -48,11 +48,9 @@ class RangeDatepicker extends Polymer.Element {
        * Format is MM (example: 07 for July, 12 for january).
        * Default is current month.
        */
-      month: {
-        type: String,
-        observer: '_monthChanged',
-      },
+      month: String,
       _monthPlus: String,
+      _yearPlus: Number,
       /**
        * Set year.
        * Default is current year.
@@ -79,7 +77,15 @@ class RangeDatepicker extends Polymer.Element {
        * Format is Unix timestamp.
        */
       _hoveredDate: String,
+      enableYearChange: {
+        type: Boolean,
+        value: false,
+      },
     };
+  }
+
+  static get observers() {
+    return ['_monthChanged(month, year)'];
   }
 
   _localeChanged(locale) {
@@ -92,15 +98,26 @@ class RangeDatepicker extends Polymer.Element {
   }
 
   _handlePrevMonth() {
-    this.shadowRoot.querySelector('range-datepicker-calendar[next]')._handlePrevMonth();
+    if (!this.enableYearChange) {
+      this.shadowRoot.querySelector('range-datepicker-calendar[next]')._handlePrevMonth();
+    }
   }
 
   _handleNextMonth() {
-    this.shadowRoot.querySelector('range-datepicker-calendar[prev]')._handleNextMonth();
+    if (!this.enableYearChange) {
+      this.shadowRoot.querySelector('range-datepicker-calendar[prev]')._handleNextMonth();
+    }
   }
 
-  _monthChanged(month) {
-    this._monthPlus = moment(month, 'MM').locale(this.locale).add(1, 'month').format('MM');
+  _monthChanged(month, year) {
+    if (year && month) {
+      this._monthPlus = moment(month, 'MM').locale(this.locale).add(1, 'month').format('MM');
+      if (this._monthPlus === '01') {
+        this._yearPlus = parseInt(year, 10) + 1;
+      } else {
+        this._yearPlus = parseInt(year, 10);
+      }
+    }
   }
 
   _isNarrow(forceNarrow, narrow) {
