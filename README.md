@@ -3,7 +3,7 @@
 
 ## &lt;range-datepicker&gt;
 
-![range-datepicker in action](https://raw.githubusercontent.com/roxus/range-datepicker/master/demo.gif)
+![range-datepicker in action](https://raw.githubusercontent.com/roxus/range-datepicker/master/demo.png)
 
 `range-datepicker` provides a simple datepicker with range.
 
