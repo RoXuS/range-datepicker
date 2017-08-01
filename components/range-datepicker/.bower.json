@@ -1,7 +1,7 @@
 {
   "name": "range-datepicker",
   "main": "range-datepicker.html",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "authors": [
     "Julien Rousseau <RoXuS>"
   ],
@@ -37,14 +37,14 @@
     "polymer": "^2.0.0"
   },
   "homepage": "https://github.com/RoXuS/range-datepicker",
-  "_release": "0.0.10",
+  "_release": "0.0.11",
   "_resolution": {
     "type": "version",
-    "tag": "0.0.10",
-    "commit": "7125ddf3f070d00501deb017691af34d398c2eba"
+    "tag": "0.0.11",
+    "commit": "346d99f955d27ef20ab8348607d6d1ffc6409a1b"
   },
   "_source": "https://github.com/RoXuS/range-datepicker.git",
-  "_target": "^0.0.10",
+  "_target": "^0.0.11",
   "_originalSource": "range-datepicker",
   "_direct": true
 }

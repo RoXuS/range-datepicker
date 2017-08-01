@@ -172,7 +172,7 @@
               <template is="dom-repeat" items="[[week]]" as="dayOfMonth">
                 <td class$="[[_tdIsEnabled(dayOfMonth)]]">
                   <template is="dom-if" if="[[dayOfMonth]]">
-                    <range-datepicker-cell month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[hoveredDate]]"
+                    <range-datepicker-cell disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]" month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[hoveredDate]]"
                       date-to="[[dateTo]]" date-from="[[dateFrom]]" on-date-is-selected="_handleDateSelected"
                       day="[[dayOfMonth]]"></range-datepicker-cell>
                   </template>

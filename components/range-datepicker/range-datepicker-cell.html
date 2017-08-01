@@ -24,23 +24,27 @@
         padding: 0;
       }
 
-      div:hover {
+      div:not(.disabled):hover {
         background: var(--range-datepicker-cell-hover, #e4e7e7);
         cursor: pointer;
       }
 
       div.hovered {
-        background: var(--range-datepicker-cell-hovered, rgba(0, 150, 136, 0.5));
+        background: var(--range-datepicker-cell-hovered, rgba(0, 150, 136, 0.5)) !important;
         color: white;
       }
 
       div.selected {
-        background: var(--range-datepicker-cell-selected, rgb(0, 150, 136));
+        background: var(--range-datepicker-cell-selected, rgb(0, 150, 136)) !important;
         color: white;
+      }
+
+      div.disabled {
+        opacity: 0.4;
       }
     </style>
 
-    <div on-click="_handleTap" on-mouseover="_handleHover" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]]">
+    <div on-click="_handleTap" on-mouseover="_handleHover" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]] [[_isEnabled(day, min, max, disabledDays)]]">
       <template is="dom-if" if="[[day]]">
         [[day.title]]
       </template>

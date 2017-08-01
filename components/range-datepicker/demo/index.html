@@ -29,9 +29,42 @@
           <template>
             <div>Date from : [[dateFrom]]</div>
             <div>Date to : [[dateTo]]</div>
-            <range-datepicker month="12" date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+            <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
           </template>
         </dom-bind>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker range with preselection of the month</h3>
+    <demo-snippet>
+      <template>
+        <dom-bind>
+          <template>
+            <div>Date from : [[dateFrom]]</div>
+            <div>Date to : [[dateTo]]</div>
+            <range-datepicker month="09" date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+          </template>
+        </dom-bind>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker range with min and max</h3>
+    <demo-snippet>
+      <template>
+        <range-datepicker month="08" year="2017" min="1504216800" max="1504908000"></range-datepicker>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker range with disabled day</h3>
+    <demo-snippet>
+      <template>
+        <range-datepicker month="08" year="2017" disabled-days='["1504994400","1504908000","1502402400"]'></range-datepicker>
       </template>
     </demo-snippet>
   </div>

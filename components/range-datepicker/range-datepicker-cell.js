@@ -17,6 +17,16 @@ class RangeDatepickerCell extends Polymer.Element {
       dateFrom: Number,
       month: String,
       hoveredDate: Number,
+      min: Number,
+      max: Number,
+      _disabled: {
+        type: Boolean,
+        value: false,
+      },
+      disabledDays: {
+        type: Array,
+        value: [],
+      },
     };
   }
 
@@ -44,11 +54,13 @@ class RangeDatepickerCell extends Polymer.Element {
   }
 
   _handleTap() {
-    this.dispatchEvent(
-      new CustomEvent('date-is-selected', {
-        detail: { date: this.day.date },
-      })
-    );
+    if (!this._disabled) {
+      this.dispatchEvent(
+        new CustomEvent('date-is-selected', {
+          detail: { date: this.day.date },
+        })
+      );
+    }
   }
 
   _handleHover() {
@@ -69,6 +81,21 @@ class RangeDatepickerCell extends Polymer.Element {
   _isHovered(hovered) {
     if (hovered) {
       return 'hovered';
+    }
+    return '';
+  }
+
+  _isEnabled(day, min, max, disabledDays) {
+    this._disabled = false;
+    if (disabledDays && day && day.date) {
+      if (
+        day.date < min ||
+        day.date > max ||
+        disabledDays.findIndex(disabledDay => parseInt(disabledDay, 10) === day.date) !== -1
+      ) {
+        this._disabled = true;
+        return 'disabled';
+      }
     }
     return '';
   }
