@@ -11,11 +11,16 @@
 
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+  <link rel="import" href="../../paper-input/paper-input.html">
   <link rel="import" href="../range-datepicker.html">
+  <link rel="import" href="../range-datepicker-input.html">
 
   <custom-style>
-    <style is="custom-style" include="demo-pages-shared-styles">
-
+    <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
+      div>paper-input:nth-child(1) {
+        margin-right: 12px;
+      }
     </style>
   </custom-style>
 </head>
@@ -30,6 +35,26 @@
             <div>Date from : [[dateFrom]]</div>
             <div>Date to : [[dateTo]]</div>
             <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+          </template>
+        </dom-bind>
+      </template>
+    </demo-snippet>
+  </div>
+
+  <div class="vertical-section-container centered">
+    <h3>Basic range-datepicker-input by using your custom inputs (with template)</h3>
+    <demo-snippet>
+      <template>
+        <dom-bind>
+          <template>
+            <range-datepicker-input date-format="MM/DD/YYYY">
+              <template>
+                <div class="layout horizontal center">
+                  <paper-input label="Date from" value="[[dateFrom]]" readonly></paper-input>
+                  <paper-input label="Date to" value="[[dateTo]]" readonly></paper-input>
+                </div>
+              </template>
+            </range-datepicker-input>
           </template>
         </dom-bind>
       </template>

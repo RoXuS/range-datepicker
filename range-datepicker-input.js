@@ -1,13 +1,16 @@
 /**
- * `range-datepicker`
+ * `range-datepicker-input`
  *
  * @customElement
  * @polymer
  * @demo demo/index.html
  */
-class RangeDatepicker extends RangeDatepickerBehavior(Polymer.Element) {
+class RangeDatepickerInput extends Polymer.mixinBehaviors(
+  [Polymer.Templatizer],
+  RangeDatepickerBehavior(Polymer.Element)
+) {
   static get is() {
-    return 'range-datepicker';
+    return 'range-datepicker-input';
   }
   static get properties() {
     return {
@@ -71,6 +74,7 @@ class RangeDatepicker extends RangeDatepickerBehavior(Polymer.Element) {
       dateTo: {
         type: String,
         notify: true,
+        observer: '_dateToChanged',
       },
       /**
        * Current hovered date.
@@ -96,12 +100,55 @@ class RangeDatepicker extends RangeDatepickerBehavior(Polymer.Element) {
        * Format is Unix timestamp.
        */
       disabledDays: Array,
+
+      /**
+       * Format of the date.
+       * Default is DD/MM/YYYY.
+       */
+      dateFormat: {
+        type: String,
+        value: 'DD/MM/YYYY',
+      },
     };
   }
 
   static get observers() {
     return ['_monthChanged(month, year)'];
   }
+
+  _handleOpenDropdown() {
+    this.shadowRoot.querySelector('iron-dropdown').open();
+  }
+
+  _formatDate(date) {
+    if (date) {
+      return moment(date, 'X').locale(this.locale).format(this.dateFormat);
+    }
+    return '';
+  }
+
+  _dateToChanged(date) {
+    if (date) {
+      this.shadowRoot.querySelector('iron-dropdown').close();
+      this.instance.dateTo = this._formatDate(this.dateTo);
+      this.instance.dateFrom = this._formatDate(this.dateFrom);
+    }
+  }
+
+  attached() {
+    this._ensureTemplatized();
+  }
+
+  _ensureTemplatized() {
+    this._userTemplate = this.queryEffectiveChildren('template');
+    const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this);
+    this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
+    this._itemsParent.appendChild(this.instance.root);
+  }
+
+  get _itemsParent() {
+    return Polymer.dom(Polymer.dom(this._userTemplate).parentNode);
+  }
 }
 
-window.customElements.define(RangeDatepicker.is, RangeDatepicker);
+window.customElements.define(RangeDatepickerInput.is, RangeDatepickerInput);
