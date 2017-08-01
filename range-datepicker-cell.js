@@ -17,6 +17,12 @@ class RangeDatepickerCell extends Polymer.Element {
       dateFrom: Number,
       month: String,
       hoveredDate: Number,
+      min: Number,
+      max: Number,
+      _disabled: {
+        type: Boolean,
+        value: false,
+      },
     };
   }
 
@@ -44,11 +50,13 @@ class RangeDatepickerCell extends Polymer.Element {
   }
 
   _handleTap() {
-    this.dispatchEvent(
-      new CustomEvent('date-is-selected', {
-        detail: { date: this.day.date },
-      })
-    );
+    if (!this._disabled) {
+      this.dispatchEvent(
+        new CustomEvent('date-is-selected', {
+          detail: { date: this.day.date },
+        })
+      );
+    }
   }
 
   _handleHover() {
@@ -71,6 +79,18 @@ class RangeDatepickerCell extends Polymer.Element {
       return 'hovered';
     }
     return '';
+  }
+
+  _isEnabled(day, min, max) {
+    if (!min || !max) {
+      this._disabled = false;
+      return '';
+    } else if (min && max && day.date >= min && day.date <= max) {
+      this._disabled = false;
+      return '';
+    }
+    this._disabled = true;
+    return 'disabled';
   }
 }
 

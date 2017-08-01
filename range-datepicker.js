@@ -81,6 +81,16 @@ class RangeDatepicker extends Polymer.Element {
         type: Boolean,
         value: false,
       },
+      /**
+       * Minimal date.
+       * Format is Unix timestamp.
+       */
+      min: Number,
+      /**
+       * Maximal date.
+       * Format is Unix timestamp.
+       */
+      max: Number,
     };
   }
 

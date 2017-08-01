@@ -57,6 +57,8 @@ class RangeDatepickerCalendar extends Polymer.Element {
         value: false,
         observer: '_enableYearChangeChanged',
       },
+      min: Number,
+      max: Number,
     };
   }
 
