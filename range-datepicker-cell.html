@@ -44,7 +44,7 @@
       }
     </style>
 
-    <div on-click="_handleTap" on-mouseover="_handleHover" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]] [[_isEnabled(day, min, max)]]">
+    <div on-click="_handleTap" on-mouseover="_handleHover" class$="layout horizontal center center-justified [[_isSelected(_selected)]] [[_isHovered(_hovered)]] [[_isEnabled(day, min, max, disabledDays)]]">
       <template is="dom-if" if="[[day]]">
         [[day.title]]
       </template>

@@ -91,6 +91,11 @@ class RangeDatepicker extends Polymer.Element {
        * Format is Unix timestamp.
        */
       max: Number,
+      /**
+       * Array of disabled days.
+       * Format is Unix timestamp.
+       */
+      disabledDays: Array,
     };
   }
 

@@ -59,6 +59,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
       },
       min: Number,
       max: Number,
+      disabledDays: Array,
     };
   }
 

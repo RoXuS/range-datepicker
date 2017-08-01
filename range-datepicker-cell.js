@@ -23,6 +23,10 @@ class RangeDatepickerCell extends Polymer.Element {
         type: Boolean,
         value: false,
       },
+      disabledDays: {
+        type: Array,
+        value: [],
+      },
     };
   }
 
@@ -81,16 +85,19 @@ class RangeDatepickerCell extends Polymer.Element {
     return '';
   }
 
-  _isEnabled(day, min, max) {
-    if (!min || !max) {
-      this._disabled = false;
-      return '';
-    } else if (min && max && day.date >= min && day.date <= max) {
-      this._disabled = false;
-      return '';
+  _isEnabled(day, min, max, disabledDays) {
+    this._disabled = false;
+    if (disabledDays && day && day.date) {
+      if (
+        day.date < min ||
+        day.date > max ||
+        disabledDays.findIndex(disabledDay => parseInt(disabledDay, 10) === day.date) !== -1
+      ) {
+        this._disabled = true;
+        return 'disabled';
+      }
     }
-    this._disabled = true;
-    return 'disabled';
+    return '';
   }
 }
 

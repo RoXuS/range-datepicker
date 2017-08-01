@@ -19,8 +19,74 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="rangeDatepickerCellMinMax">
+      <template>
+        <range-datepicker-cell month="07" min="1501538400" max="1501711200"></range-datepicker-cell>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="rangeDatepickerCellDisabled">
+      <template>
+        <range-datepicker-cell month="07" disabled-days='["1504994400","1504908000","1502402400"]'></range-datepicker-cell>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="rangeDatepickerCellMinMaxDisabled">
+      <template>
+        <range-datepicker-cell month="07" min="1501538400" max="1501711200" disabled-days='["1501624800"]'></range-datepicker-cell>
+      </template>
+    </test-fixture>
+
     <script>
       suite('rangeDatepickerCell', function() {
+
+        test('disabled and min max work together', function() {
+          var element = fixture('rangeDatepickerCellMinMaxDisabled');
+          assert.isFalse(element._disabled);
+          element.day = {date: 1501797600};
+          assert.isTrue(element._disabled);
+          element.day = {date: 1501279200};
+          assert.isTrue(element._disabled);
+          element.day = {date: 1501538400};
+          assert.isFalse(element._disabled);
+          element.day = {date: 1501711200};
+          assert.isFalse(element._disabled);
+          element.day = {date: 1501624800};
+          assert.isTrue(element._disabled);
+        });
+
+        test('disabled works', function() {
+          var element = fixture('rangeDatepickerCellDisabled');
+          assert.isFalse(element._disabled);
+          element.day = {date: 1501884000};
+          assert.isFalse(element._disabled);
+          element.day = {date: 1504908000};
+          assert.isTrue(element._disabled);
+          element.day = {date: 1499292000};
+          assert.isFalse(element._disabled);
+        });
+
+        test('min and max works', function() {
+          var element = fixture('rangeDatepickerCellMinMax');
+          assert.isFalse(element._disabled);
+          element.day = {date: 1501884000};
+          assert.isTrue(element._disabled);
+          element.day = {date: 1501624800};
+          assert.isFalse(element._disabled);
+          element.day = {date: 1499292000};
+          assert.isTrue(element._disabled);
+        });
+
+        test('disabled', function() {
+          var element = fixture('rangeDatepickerCellMinMax');
+          assert.isFalse(element._disabled);
+          element.day = {date: 1501884000};
+          assert.isTrue(element._disabled);
+          element.day = {date: 1501624800};
+          assert.isFalse(element._disabled);
+          element.day = {date: 1499292000};
+          assert.isTrue(element._disabled);
+        });
 
         test('_selected and _hovered are correct', function() {
           var element = fixture('rangeDatepickerCell');
