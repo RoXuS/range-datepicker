@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.11](https://github.com/RoXuS/range-datepicker/tree/0.0.11) (2017-08-01)
+- Add a feature to disable some targeted days ([commit](https://github.com/RoXuS/range-datepicker/commit/5c03cb8))
+- Add feature min and max ([commit](https://github.com/RoXuS/range-datepicker/commit/4565e8b))
+
 ## [v0.0.10](https://github.com/RoXuS/range-datepicker/tree/0.0.10) (2017-07-31)
 - New property to allow year change or not ([commit](https://github.com/RoXuS/range-datepicker/commit/939907a))
 
