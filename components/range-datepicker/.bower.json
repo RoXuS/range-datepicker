@@ -1,7 +1,7 @@
 {
   "name": "range-datepicker",
   "main": "range-datepicker.html",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "authors": [
     "Julien Rousseau <RoXuS>"
   ],
@@ -26,9 +26,12 @@
     "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
     "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0",
     "neon-animation": "PolymerElements/neon-animation#^2.0.1",
-    "web-animations-js": "^2.3.1"
+    "web-animations-js": "^2.3.1",
+    "iron-dropdown": "PolymerElements/iron-dropdown#^2.0.0",
+    "paper-material": "PolymerElements/paper-material#^2.0.0"
   },
   "devDependencies": {
+    "paper-input": "PolymerElements/paper-input#^2.0.1",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
@@ -37,14 +40,14 @@
     "polymer": "^2.0.0"
   },
   "homepage": "https://github.com/RoXuS/range-datepicker",
-  "_release": "0.0.11",
+  "_release": "0.0.12",
   "_resolution": {
     "type": "version",
-    "tag": "0.0.11",
-    "commit": "346d99f955d27ef20ab8348607d6d1ffc6409a1b"
+    "tag": "0.0.12",
+    "commit": "3a8ff07f99b540dc76306f741210ba202544f46a"
   },
   "_source": "https://github.com/RoXuS/range-datepicker.git",
-  "_target": "^0.0.11",
+  "_target": "^0.0.12",
   "_originalSource": "range-datepicker",
   "_direct": true
 }
