@@ -18,31 +18,40 @@
 <dom-module id="range-datepicker-calendar">
   <template>
     <style include="iron-flex iron-flex-alignment">
-       :host {
+      :host {
         @apply --paper-font-common-base;
         display: block;
         width: 266px;
       }
 
-       :host>div {
+      :host>div {
         overflow: hidden;
       }
 
-      table {
+      div.table {
+        display: table;
         border-collapse: collapse;
         table-layout: fixed;
       }
 
-      th {
+      div.th {
+        display: table-cell;
         @apply --paper-font-caption;
         color: rgb(117, 117, 117);
         font-size: 11px;
         width: 38px;
         padding: 0;
         margin: 0;
+        text-align: center;
       }
 
-      td {
+      div.tr {
+        display: table-row;
+        height: 38px;
+      }
+
+      div.td {
+        display: table-cell;
         padding: 0;
         width: 38px;
         margin: 0;
@@ -69,7 +78,7 @@
         max-height: 200px;
       }
 
-      tbody {
+      div.tbody {
         transition: all 0ms;
         transform: translateX(0);
         height: 235px;
@@ -97,28 +106,22 @@
         --paper-input-container-underline: {
           display: none;
         }
-        ;
 
         --paper-input-container-underline-focus: {
           display: none;
         }
-        ;
-
         --paper-input-container-underline-disabled: {
           display: none;
         }
-        ;
 
         --paper-input-container: {
           width: 75px;
           padding: 0;
         }
-        ;
 
         --paper-input-container-input: {
           @apply --paper-font-title;
         }
-        ;
       }
     </style>
 
@@ -158,30 +161,31 @@
           </template>
         </dom-if>
       </div>
-      <table>
-        <thead>
-          <tr>
+
+      <div class="table">
+        <div class="thead">
+          <div class="tr">
             <template is="dom-repeat" items="[[_dayNamesOfTheWeek]]" as="dayNameOfWeek">
-              <th>[[dayNameOfWeek]]</th>
+              <div class="th">[[dayNameOfWeek]]</th>
             </template>
-          </tr>
-        </thead>
-        <tbody>
+          </div>
+        </div>
+        <div class="tbody">
           <template is="dom-repeat" items="[[_daysOfMonth]]" as="week">
-            <tr>
+            <div class="tr">
               <template is="dom-repeat" items="[[week]]" as="dayOfMonth">
-                <td class$="[[_tdIsEnabled(dayOfMonth)]]">
+                <div class$="td [[_tdIsEnabled(dayOfMonth)]]">
                   <template is="dom-if" if="[[dayOfMonth]]">
                     <range-datepicker-cell disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]" month="[[month]]" on-date-is-hovered="_handleDateHovered" hovered-date="[[hoveredDate]]"
                       date-to="[[dateTo]]" date-from="[[dateFrom]]" on-date-is-selected="_handleDateSelected"
                       day="[[dayOfMonth]]"></range-datepicker-cell>
                   </template>
-                </td>
+                </div>
               </template>
-            </tr>
+            </div>
           </template>
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
 
   </template>
