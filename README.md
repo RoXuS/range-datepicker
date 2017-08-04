@@ -14,6 +14,7 @@
 Inspired by [airbnb datepicker](https://github.com/airbnb/react-dates).
 
 [See live demo](https://roxus.github.io/range-datepicker/components/range-datepicker/demo/)
+[See docs](https://roxus.github.io/range-datepicker/)
 
 <!---
 ```
