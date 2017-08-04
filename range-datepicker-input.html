@@ -34,7 +34,7 @@
 
     <slot on-tap="_handleOpenDropdown"></slot>
 
-    <iron-dropdown>
+    <iron-dropdown horizontal-align="[[horizontalAlign]]">
       <paper-material slot="dropdown-content">
         <dom-if if="[[!forceNarrow]]">
           <template>

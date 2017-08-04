@@ -67,6 +67,7 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
       dateFrom: {
         type: String,
         notify: true,
+        observer: '_dateFromChanged',
       },
       /**
        * Date to.
@@ -110,6 +111,14 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
         type: String,
         value: 'DD/MM/YYYY',
       },
+      /**
+       * The orientation against which to align the dropdown content
+       * horizontally relative to the dropdown trigger.
+       */
+      horizontalAlign: {
+        type: String,
+        value: 'left',
+      },
     };
   }
 
@@ -126,6 +135,13 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
       return moment(date, 'X').locale(this.locale).format(this.dateFormat);
     }
     return '';
+  }
+
+  _dateFromChanged(date) {
+    if (this.noRange && date) {
+      this.shadowRoot.querySelector('iron-dropdown').close();
+      this.instance.dateFrom = this._formatDate(this.dateFrom);
+    }
   }
 
   _dateToChanged(date) {
