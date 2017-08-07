@@ -1,4 +1,10 @@
 {
+	"name": "roxus-range-datepicker",
+	"main": "range-datepicker.html",
+	"author": "Julien Rousseau <RoXuS>",
+	"version": "0.0.12",
+	"description": "range-datepicker provides a simple datepicker with range.",
+	"private": false,
 	"devDependencies": {
 		"eslint": "^3.19.0",
 		"eslint-config-airbnb": "^14.1.0",
