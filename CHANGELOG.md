@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.0.13](https://github.com/RoXuS/range-datepicker/tree/0.0.13) (2017-08-10)
+- adding npm package info ([commit](https://github.com/RoXuS/range-datepicker/commit/dc659eb))
+- Fix bug on prev/next month ([commit](https://github.com/RoXuS/range-datepicker/commit/d384838))
+- Update readme ([commit](https://github.com/RoXuS/range-datepicker/commit/83b810a))
+- Merge remote-tracking branch 'loekup/edge-fixes' ([commit](https://github.com/RoXuS/range-datepicker/commit/3b766d2))
+- Add documentation ([commit](https://github.com/RoXuS/range-datepicker/commit/025edb8))
+- Fix bug on range-datepicker-pinput ([commit](https://github.com/RoXuS/range-datepicker/commit/0bea6eb))
+- Change table to divs as ie11 cant handle templates in tables ([commit](https://github.com/RoXuS/range-datepicker/commit/4f410c4))
+- Give tr a height to fix render bug in edge ([commit](https://github.com/RoXuS/range-datepicker/commit/c1b3435))
+- Fix eslint errors ([commit](https://github.com/RoXuS/range-datepicker/commit/1f52fbc))
+- Update README ([commit](https://github.com/RoXuS/range-datepicker/commit/64a6ead))
+
 ## [v0.0.12](https://github.com/RoXuS/range-datepicker/tree/0.0.12) (2017-08-01)
 - Add range-datepicker-input ([commit](https://github.com/RoXuS/range-datepicker/commit/e25fc63))
 - Use png instead of gif ([commit](https://github.com/RoXuS/range-datepicker/commit/97b3f79))
