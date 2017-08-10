@@ -1,8 +1,8 @@
 {
-	"name": "roxus-range-datepicker",
+	"name": "range-datepicker",
 	"main": "range-datepicker.html",
 	"author": "Julien Rousseau <RoXuS>",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"description": "range-datepicker provides a simple datepicker with range.",
 	"private": false,
 	"devDependencies": {
