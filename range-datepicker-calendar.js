@@ -159,7 +159,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _handleNextMonth() {
-    const tbody = this.shadowRoot.querySelector('tbody');
+    const tbody = this.shadowRoot.querySelector('.tbody');
     const monthName = this.shadowRoot.querySelector('.monthName > div');
     tbody.classList.add('withTransition');
     tbody.classList.add('moveToLeft');
@@ -194,7 +194,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _handlePrevMonth() {
-    const tbody = this.shadowRoot.querySelector('tbody');
+    const tbody = this.shadowRoot.querySelector('.tbody');
     const monthName = this.shadowRoot.querySelector('.monthName > div');
     tbody.classList.add('withTransition');
     tbody.classList.add('moveToRight');
