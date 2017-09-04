@@ -138,7 +138,7 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   }
 
   _dateFromChanged(date) {
-    if (this.noRange && date) {
+    if (this.noRange && date && this.instance) {
       this.shadowRoot.querySelector('iron-dropdown').close();
       this.instance.dateFrom = this._formatDate(this.dateFrom);
     }
@@ -159,8 +159,16 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   _ensureTemplatized() {
     this._userTemplate = this.queryEffectiveChildren('template');
     const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this);
+    const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : 0;
+    const dateTo = this.dateTo ? this._formatDate(this.dateTo) : 0;
     this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
     this._itemsParent.appendChild(this.instance.root);
+    if (dateFrom) {
+      this.instance.dateFrom = dateFrom;
+    }
+    if (dateTo) {
+      this.instance.dateTo = dateTo;
+    }
   }
 
   get _itemsParent() {
