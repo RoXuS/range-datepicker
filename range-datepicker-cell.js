@@ -45,6 +45,7 @@ class RangeDatepickerCell extends Polymer.Element {
         ((hoveredDate === day.date || day.date < hoveredDate) &&
           day.date > dateFrom &&
           !dateTo &&
+          dateFrom &&
           !this._selected) ||
         (day.date > dateFrom && day.date < dateTo)
       ) {
