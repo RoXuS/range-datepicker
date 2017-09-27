@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.0.14](https://github.com/RoXuS/range-datepicker/tree/0.0.14) (2017-09-27)
+- Fix bug when date from is empty or null by default ([commit](https://github.com/RoXuS/range-datepicker/commit/95ab7c6c))
+- Fix some bugs on range-datepicker-input ([commit](https://github.com/RoXuS/range-datepicker/commit/c7d5d389))
+- Add polymerMixin annotation ([commit](https://github.com/RoXuS/range-datepicker/commit/a4fd3cfe))
+- Update README ([commit](https://github.com/RoXuS/range-datepicker/commit/2e7d31d6))
+
 ## [v0.0.13](https://github.com/RoXuS/range-datepicker/tree/0.0.13) (2017-08-10)
 - adding npm package info ([commit](https://github.com/RoXuS/range-datepicker/commit/dc659eb))
 - Fix bug on prev/next month ([commit](https://github.com/RoXuS/range-datepicker/commit/d384838))
