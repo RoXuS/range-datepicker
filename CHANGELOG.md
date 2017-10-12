@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.15](https://github.com/RoXuS/range-datepicker/tree/0.0.14) (2017-10-12)
+- Fix css on paper-material element ([commit](https://github.com/RoXuS/range-datepicker/commit/62e40cb0))
+- Fix error when the dateFrom is equal to zero ([commit](https://github.com/RoXuS/range-datepicker/commit/92d0106c))
+
 ## [v0.0.14](https://github.com/RoXuS/range-datepicker/tree/0.0.14) (2017-09-27)
 - Fix bug when date from is empty or null by default ([commit](https://github.com/RoXuS/range-datepicker/commit/95ab7c6c))
 - Fix some bugs on range-datepicker-input ([commit](https://github.com/RoXuS/range-datepicker/commit/c7d5d389))
