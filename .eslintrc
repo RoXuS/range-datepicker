@@ -1,24 +1,40 @@
 {
-  "extends": "airbnb",
+  "extends": "airbnb-base",
   "rules": {
+    "max-len": [
+      "warn",
+      100,
+      2,
+      {
+        "ignoreUrls": true,
+        "ignoreComments": false,
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
     "no-underscore-dangle": "off",
     "new-cap": "off",
     "import/no-extraneous-dependencies": "off",
     "class-methods-use-this": "off",
-    "comma-dangle": ["error", {
+    "comma-dangle": [
+      "error",
+      {
         "arrays": "always-multiline",
         "objects": "always-multiline",
         "imports": "never",
         "exports": "never",
         "functions": "never"
-    }]
+      }
+    ]
   },
+  "plugins": ["html"],
   "env": {
     "mocha": true,
     "browser": true,
     "node": true
   },
-  "globals": { 
+  "globals": {
     "Polymer": true,
     "sinon": true,
     "flush": true,
