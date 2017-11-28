@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.0.17](https://github.com/RoXuS/range-datepicker/tree/0.0.17) (2017-11-28)
+- Other eslint fix ([commit](https://github.com/RoXuS/range-datepicker/commit/0939c8b1))
+- Rework travis build ([commit](https://github.com/RoXuS/range-datepicker/commit/4775d751))
+- Fix bug in case of multi template instance ([commit](https://github.com/RoXuS/range-datepicker/commit/a7f67109))
+- Update eslint rules ([commit](https://github.com/RoXuS/range-datepicker/commit/0b0123ba))
+
 ## [v0.0.16](https://github.com/RoXuS/range-datepicker/tree/0.0.16) (2017-11-27)
 - adding style variables ([commit](https://github.com/RoXuS/range-datepicker/commit/e1038c1e))
 - don't need the extra event handling on month change ([commit](https://github.com/RoXuS/range-datepicker/commit/6c071b6e))
