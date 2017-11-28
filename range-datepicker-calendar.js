@@ -81,7 +81,9 @@ class RangeDatepickerCalendar extends Polymer.Element {
   _yearAndMonthChanged(year, month) {
     if (year && month) {
       const startDate = moment([year, month - 1]).locale(this.locale);
-      const endDate = moment(startDate).locale(this.locale).endOf('month');
+      const endDate = moment(startDate)
+        .locale(this.locale)
+        .endOf('month');
 
       const rows = [];
       let columns = [];
@@ -125,7 +127,9 @@ class RangeDatepickerCalendar extends Polymer.Element {
   }
 
   _computeCurrentMonthName(month, year) {
-    return moment(`${month}/${year}`, 'MM/YYYY').locale(this.locale).format('MMMM');
+    return moment(`${month}/${year}`, 'MM/YYYY')
+      .locale(this.locale)
+      .format('MMMM');
   }
 
   _tdIsEnabled(day) {
@@ -135,8 +139,8 @@ class RangeDatepickerCalendar extends Polymer.Element {
     return '';
   }
 
-  _handleDateSelected(event) {
-    const date = event.detail.date;
+  _handleDateSelected({ detail }) {
+    const { date } = detail;
     if (!this.noRange) {
       if (this.dateFrom && this.dateTo) {
         this.dateFrom = date;
@@ -166,9 +170,15 @@ class RangeDatepickerCalendar extends Polymer.Element {
     monthName.classList.add('withTransition');
     monthName.classList.add('moveToLeft');
 
-    this.month = moment(this.month, 'MM').locale(this.locale).add(1, 'month').format('MM');
+    this.month = moment(this.month, 'MM')
+      .locale(this.locale)
+      .add(1, 'month')
+      .format('MM');
     if (this.month === '01') {
-      this.year = moment(this.year, 'YYYY').locale(this.locale).add(1, 'year').format('YYYY');
+      this.year = moment(this.year, 'YYYY')
+        .locale(this.locale)
+        .add(1, 'year')
+        .format('YYYY');
     }
     this.dispatchEvent(new CustomEvent('next-month'));
 
@@ -201,9 +211,15 @@ class RangeDatepickerCalendar extends Polymer.Element {
     monthName.classList.add('withTransition');
     monthName.classList.add('moveToRight');
 
-    this.month = moment(this.month, 'MM').locale(this.locale).subtract(1, 'month').format('MM');
+    this.month = moment(this.month, 'MM')
+      .locale(this.locale)
+      .subtract(1, 'month')
+      .format('MM');
     if (this.month === '12') {
-      this.year = moment(this.year, 'YYYY').locale(this.locale).subtract(1, 'year').format('YYYY');
+      this.year = moment(this.year, 'YYYY')
+        .locale(this.locale)
+        .subtract(1, 'year')
+        .format('YYYY');
     }
     this.dispatchEvent(new CustomEvent('prev-month'));
 
