@@ -10,6 +10,11 @@
 		"eslint-config-airbnb-base": "^12.0.2",
 		"eslint-plugin-import": "^2.7.0",
 		"eslint-plugin-html": "^3.2.2",
-		"web-component-tester": "^6.0.0"
+		"web-component-tester": "^6.0.0",
+		"polymer-cli": "^1.5.7"
+	},
+	"scripts": {
+		"lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
+		"install:dependencies": "polymer install --variants"
 	}
 }
