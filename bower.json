@@ -1,7 +1,7 @@
 {
   "name": "range-datepicker",
   "main": "range-datepicker.html",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "authors": [
     "Julien Rousseau <RoXuS>"
   ],
