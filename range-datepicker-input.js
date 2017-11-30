@@ -132,7 +132,9 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
 
   _formatDate(date) {
     if (date) {
-      return moment(date, 'X').locale(this.locale).format(this.dateFormat);
+      return moment(date, 'X')
+        .locale(this.locale)
+        .format(this.dateFormat);
     }
     return '';
   }
@@ -157,11 +159,13 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   }
 
   _ensureTemplatized() {
-    this._userTemplate = this.queryEffectiveChildren('template');
-    const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this);
+    if (!this.instance) {
+      this._userTemplate = this.queryEffectiveChildren('template');
+      const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this);
+      this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
+    }
     const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : 0;
     const dateTo = this.dateTo ? this._formatDate(this.dateTo) : 0;
-    this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
     this._itemsParent.appendChild(this.instance.root);
     if (dateFrom) {
       this.instance.dateFrom = dateFrom;

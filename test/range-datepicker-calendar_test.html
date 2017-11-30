@@ -28,13 +28,12 @@
   </test-fixture>
 
   <script>
-    suite('rangeDatepickerCalendar', function () {
-
-      test('days of month are setted', function () {
-        var element = fixture('rangeDatepickerCalendar');
+    suite('rangeDatepickerCalendar', () => {
+      test('days of month are setted', () => {
+        const element = fixture('rangeDatepickerCalendar');
         element._yearAndMonthChanged('2017', '07');
         assert.equal(element._daysOfMonth.length, 6);
-        element._daysOfMonth.forEach(week => {
+        element._daysOfMonth.forEach((week) => {
           assert.equal(week.length, 7);
         });
         assert.equal(element._daysOfMonth[0][0], 0);
@@ -54,8 +53,8 @@
         assert.equal(element._daysOfMonth[5][6], 0);
       });
 
-      test('select date no range', function () {
-        var element = fixture('rangeDatepickerCalendarNoRange');
+      test('select date no range', () => {
+        const element = fixture('rangeDatepickerCalendarNoRange');
         element._handleDateSelected({ detail: { date: 1 } });
         assert.equal(element.dateFrom, 1);
         assert.equal(element.dateTo, undefined);
@@ -66,8 +65,8 @@
         assert.equal(element.hoveredDate, undefined);
       });
 
-      test('select date with range', function () {
-        var element = fixture('rangeDatepickerCalendar');
+      test('select date with range', () => {
+        const element = fixture('rangeDatepickerCalendar');
         element._handleDateSelected({ detail: { date: 1 } });
         assert.equal(element.dateFrom, 1);
         assert.equal(element.dateTo, undefined);
@@ -78,8 +77,8 @@
         assert.equal(element.hoveredDate, undefined);
       });
 
-      test('hoveredDate is not setted in no-range', function () {
-        var element = fixture('rangeDatepickerCalendarNoRange');
+      test('hoveredDate is not setted in no-range', () => {
+        const element = fixture('rangeDatepickerCalendarNoRange');
         element._handleDateHovered({ detail: { date: 1 } });
         assert.equal(element.hoveredDate, undefined);
       });
