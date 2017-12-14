@@ -142,15 +142,19 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   _dateFromChanged(date) {
     if (this.noRange && date && this.instance) {
       this.shadowRoot.querySelector('iron-dropdown').close();
-      this.instance.dateFrom = this._formatDate(this.dateFrom);
+      if (this.instance) {
+        this.instance.dateFrom = this._formatDate(this.dateFrom);
+      }
     }
   }
 
   _dateToChanged(date) {
     if (date) {
       this.shadowRoot.querySelector('iron-dropdown').close();
-      this.instance.dateTo = this._formatDate(this.dateTo);
-      this.instance.dateFrom = this._formatDate(this.dateFrom);
+      if (this.instance) {
+        this.instance.dateTo = this._formatDate(this.dateTo);
+        this.instance.dateFrom = this._formatDate(this.dateFrom);
+      }
     }
   }
 
@@ -175,6 +179,8 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   _ensureTemplatized() {
     if (!this.instance) {
       this._userTemplate = this.queryEffectiveChildren('template');
+      if (!this._userTemplate)
+        return;
       const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this, { forwardHostProp: this._forwardHostProp });
       this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
     }
