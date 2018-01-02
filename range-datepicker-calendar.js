@@ -62,12 +62,12 @@ class RangeDatepickerCalendar extends Polymer.Element {
       disabledDays: Array,
       showDaysBefore: {
         type: Boolean,
-        value: false
+        value: false,
       },
       showDaysAfter: {
         type: Boolean,
-        value: false
-      }
+        value: false,
+      },
     };
   }
 

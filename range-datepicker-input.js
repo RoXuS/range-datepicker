@@ -119,6 +119,14 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
         type: String,
         value: 'left',
       },
+      showDaysBefore: {
+        type: Boolean,
+        value: false,
+      },
+      showDaysAfter: {
+        type: Boolean,
+        value: false,
+      },
     };
   }
 
@@ -165,12 +173,12 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   _forwardHostProp(property, value) {
     if (property === 'dateFrom') {
       const possibleDateFrom = moment(value, ['l', 'L'], true).locale(this.locale);
-      if (possibleDateFrom.isValid() && possibleDateFrom.format('X') != this.dateFrom) {
+      if (possibleDateFrom.isValid() && possibleDateFrom.format('X') !== this.dateFrom) {
         this.dateFrom = parseInt(possibleDateFrom.format('X'), 10);
       }
     } else if (property === 'dateTo') {
       const possibleDateTo = moment(value, ['l', 'L'], true).locale(this.locale);
-      if (possibleDateTo.isValid() && possibleDateTo.format('X') != this.dateTo) {
+      if (possibleDateTo.isValid() && possibleDateTo.format('X') !== this.dateTo) {
         this.dateTo = parseInt(possibleDateTo.format('X'), 10);
       }
     }
@@ -179,9 +187,12 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   _ensureTemplatized() {
     if (!this.instance) {
       this._userTemplate = this.queryEffectiveChildren('template');
-      if (!this._userTemplate)
+      if (!this._userTemplate) {
         return;
-      const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this, { forwardHostProp: this._forwardHostProp });
+      }
+      const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this, {
+        forwardHostProp: this._forwardHostProp,
+      });
       this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
     }
     const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : 0;
