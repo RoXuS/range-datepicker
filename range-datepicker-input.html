@@ -33,7 +33,9 @@
 
     <iron-media-query query="(max-width: 650px)" query-matches="{{narrow}}"></iron-media-query>
 
-    <slot on-tap="_handleOpenDropdown"></slot>
+    <div id="trigger" on-tap="_handleOpenDropdown">
+      <slot></slot>
+    </div>
 
     <iron-dropdown horizontal-align="[[horizontalAlign]]">
       <paper-material slot="dropdown-content">
