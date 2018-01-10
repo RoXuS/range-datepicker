@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.19](https://github.com/RoXuS/range-datepicker/tree/0.0.19) (2018-01-10)
+- Set on-tap on a div instead of slot to avoid bug on firefox ([commit](https://github.com/RoXuS/range-datepicker/commit/bd4c97aa))
+
 ## [v0.0.18](https://github.com/RoXuS/range-datepicker/tree/0.0.18) (2017-11-30)
 - Handle noRange case in case of force narrow on input element ([commit](https://github.com/RoXuS/range-datepicker/commit/48bc4f28))
 
