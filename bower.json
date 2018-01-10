@@ -1,9 +1,10 @@
 {
-  "name": "range-datepicker",
+  "name": "yoerayo-range-datepicker",
   "main": "range-datepicker.html",
-  "version": "0.0.18",
+  "version": "0.0.21",
   "authors": [
-    "Julien Rousseau <RoXuS>"
+    "Julien Rousseau <RoXuS>",
+    "Keith Starling"
   ],
   "description": "range-datepicker provides a simple datepicker with range.",
   "keywords": [

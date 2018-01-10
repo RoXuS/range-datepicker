@@ -97,6 +97,14 @@ class RangeDatepicker extends RangeDatepickerBehavior(Polymer.Element) {
        * Format is Unix timestamp.
        */
       disabledDays: Array,
+      showDaysBefore: {
+        type: Boolean,
+        value: false,
+      },
+      showDaysAfter: {
+        type: Boolean,
+        value: false,
+      },
     };
   }
 

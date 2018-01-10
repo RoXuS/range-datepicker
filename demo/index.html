@@ -34,7 +34,7 @@
           <template>
             <div>Date from : [[dateFrom]]</div>
             <div>Date to : [[dateTo]]</div>
-            <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+            <range-datepicker show-days-before="true" show-days-after="true" date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
           </template>
         </dom-bind>
       </template>
@@ -48,12 +48,12 @@
         <dom-bind>
           <template>
             <range-datepicker-input date-format="MM/DD/YYYY">
-              <template>
-                <div class="layout horizontal center">
-                  <paper-input label="Date from" value="[[dateFrom]]" readonly></paper-input>
-                  <paper-input label="Date to" value="[[dateTo]]" readonly></paper-input>
-                </div>
-              </template>
+                <template>
+                  <div class="layout horizontal center">
+                    <paper-input label="Date from" value="{{dateFrom}}"></paper-input>
+                    <paper-input label="Date to" value="{{dateTo}}"></paper-input>
+                  </div>
+                </template>
             </range-datepicker-input>
           </template>
         </dom-bind>

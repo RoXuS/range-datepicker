@@ -119,6 +119,14 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
         type: String,
         value: 'left',
       },
+      showDaysBefore: {
+        type: Boolean,
+        value: false,
+      },
+      showDaysAfter: {
+        type: Boolean,
+        value: false,
+      },
     };
   }
 
@@ -142,15 +150,19 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   _dateFromChanged(date) {
     if (this.noRange && date && this.instance) {
       this.shadowRoot.querySelector('iron-dropdown').close();
-      this.instance.dateFrom = this._formatDate(this.dateFrom);
+      if (this.instance) {
+        this.instance.dateFrom = this._formatDate(this.dateFrom);
+      }
     }
   }
 
   _dateToChanged(date) {
     if (date) {
       this.shadowRoot.querySelector('iron-dropdown').close();
-      this.instance.dateTo = this._formatDate(this.dateTo);
-      this.instance.dateFrom = this._formatDate(this.dateFrom);
+      if (this.instance) {
+        this.instance.dateTo = this._formatDate(this.dateTo);
+        this.instance.dateFrom = this._formatDate(this.dateFrom);
+      }
     }
   }
 
@@ -158,10 +170,29 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
     this._ensureTemplatized();
   }
 
+  _forwardHostProp(property, value) {
+    if (property === 'dateFrom') {
+      const possibleDateFrom = moment(value, ['l', 'L'], true).locale(this.locale);
+      if (possibleDateFrom.isValid() && possibleDateFrom.format('X') !== this.dateFrom) {
+        this.dateFrom = parseInt(possibleDateFrom.format('X'), 10);
+      }
+    } else if (property === 'dateTo') {
+      const possibleDateTo = moment(value, ['l', 'L'], true).locale(this.locale);
+      if (possibleDateTo.isValid() && possibleDateTo.format('X') !== this.dateTo) {
+        this.dateTo = parseInt(possibleDateTo.format('X'), 10);
+      }
+    }
+  }
+
   _ensureTemplatized() {
     if (!this.instance) {
       this._userTemplate = this.queryEffectiveChildren('template');
-      const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this);
+      if (!this._userTemplate) {
+        return;
+      }
+      const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this, {
+        forwardHostProp: this._forwardHostProp,
+      });
       this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
     }
     const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : 0;

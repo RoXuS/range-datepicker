@@ -60,6 +60,14 @@ class RangeDatepickerCalendar extends Polymer.Element {
       min: Number,
       max: Number,
       disabledDays: Array,
+      showDaysBefore: {
+        type: Boolean,
+        value: false,
+      },
+      showDaysAfter: {
+        type: Boolean,
+        value: false,
+      },
     };
   }
 
@@ -84,6 +92,14 @@ class RangeDatepickerCalendar extends Polymer.Element {
       const endDate = moment(startDate)
         .locale(this.locale)
         .endOf('month');
+
+      if (this.showDaysBefore) {
+        startDate.startOf('week');
+      }
+
+      if (this.showDaysAfter) {
+        endDate.endOf('week');
+      }
 
       const rows = [];
       let columns = [];
