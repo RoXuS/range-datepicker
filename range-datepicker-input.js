@@ -119,11 +119,17 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
         type: String,
         value: 'left',
       },
+      _isNarrow: Function,
     };
   }
 
   static get observers() {
     return ['_monthChanged(month, year)'];
+  }
+
+  constructor() {
+    super();
+    this.instances = [];
   }
 
   _handleOpenDropdown() {
@@ -154,16 +160,30 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
     }
   }
 
-  attached() {
-    this._ensureTemplatized();
+  connectedCallback() {
+    if (!this.ctor) {
+      const props = {
+        __key__: true,
+        [this.dateTo]: true,
+        [this.dateFrom]: true,
+      };
+      this._parentTemplate = this.queryEffectiveChildren('template');
+      this.ctor = Polymer.Templatize.templatize(this._parentTemplate, this, {
+        instanceProps: props,
+        forwardHostProp(prop, value) {
+          this.instances.forEach((inst) => {
+            inst.forwardHostProp(prop, value);
+          });
+        },
+      });
+      this._ensureTemplatized();
+    }
   }
 
   _ensureTemplatized() {
-    if (!this.instance) {
-      this._userTemplate = this.queryEffectiveChildren('template');
-      const TemplateClass = Polymer.Templatize.templatize(this._userTemplate, this);
-      this.instance = new TemplateClass({ dateTo: 0, dateFrom: 0 });
-    }
+    this.instance = new this.ctor({ dateTo: 0, dateFrom: 0 });
+    this.instances.push(this.instance);
+
     const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : 0;
     const dateTo = this.dateTo ? this._formatDate(this.dateTo) : 0;
     this._itemsParent.appendChild(this.instance.root);
@@ -176,7 +196,7 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   }
 
   get _itemsParent() {
-    return Polymer.dom(Polymer.dom(this._userTemplate).parentNode);
+    return Polymer.dom(Polymer.dom(this._parentTemplate).parentNode);
   }
 }
 
