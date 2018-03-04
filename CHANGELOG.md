@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.20](https://github.com/RoXuS/range-datepicker/tree/0.0.20) (2018-03-04)
+- Fix to forward properties following new change on polymer 2.5 ([commit](https://github.com/RoXuS/range-datepicker/commit/6cf0c48))
+
 ## [v0.0.19](https://github.com/RoXuS/range-datepicker/tree/0.0.19) (2018-01-10)
 - Set on-tap on a div instead of slot to avoid bug on firefox ([commit](https://github.com/RoXuS/range-datepicker/commit/bd4c97aa))
 
