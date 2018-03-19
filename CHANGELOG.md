@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.22](https://github.com/RoXuS/range-datepicker/tree/0.0.22) (2018-03-19)
+- Set default value to empty instead of 0 ([commit](https://github.com/RoXuS/range-datepicker/commit/370bf6f))
+
 ## [v0.0.21](https://github.com/RoXuS/range-datepicker/tree/0.0.21) (2018-03-19)
 - Add next and prev button to narrow view ([commit](https://github.com/RoXuS/range-datepicker/commit/b5511ee))
 
