@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.21](https://github.com/RoXuS/range-datepicker/tree/0.0.21) (2018-03-19)
+- Add next and prev button to narrow view ([commit](https://github.com/RoXuS/range-datepicker/commit/b5511ee))
+
 ## [v0.0.20](https://github.com/RoXuS/range-datepicker/tree/0.0.20) (2018-03-04)
 - Fix to forward properties following new change on polymer 2.5 ([commit](https://github.com/RoXuS/range-datepicker/commit/6cf0c48))
 
