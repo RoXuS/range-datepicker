@@ -181,11 +181,11 @@ class RangeDatepickerInput extends Polymer.mixinBehaviors(
   }
 
   _ensureTemplatized() {
-    this.instance = new this.ctor({ dateTo: 0, dateFrom: 0 });
+    this.instance = new this.ctor({ dateTo: '', dateFrom: '' });
     this.instances.push(this.instance);
 
-    const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : 0;
-    const dateTo = this.dateTo ? this._formatDate(this.dateTo) : 0;
+    const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : '';
+    const dateTo = this.dateTo ? this._formatDate(this.dateTo) : '';
     this._itemsParent.appendChild(this.instance.root);
     if (dateFrom) {
       this.instance.dateFrom = dateFrom;
