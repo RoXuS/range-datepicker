@@ -2,7 +2,7 @@
 	"name": "range-datepicker",
 	"main": "range-datepicker.html",
 	"author": "Julien Rousseau <RoXuS>",
-	"version": "0.0.20",
+	"version": "0.0.21",
 	"description": "range-datepicker provides a simple datepicker with range.",
 	"private": false,
 	"devDependencies": {
