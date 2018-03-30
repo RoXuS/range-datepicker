@@ -11,73 +11,9 @@
 <link rel="import" href="moment-import.html">
 
 <dom-module id="range-datepicker-input">
-  <template>
-    <style include="iron-flex iron-flex-alignment">
-      :host {
-        display: block;
-      }
-
-      #firstDatePicker {
-        margin-right: 16px;
-      }
-
-      iron-dropdown {
-        background: white;
-      }
-
-      paper-material {
-        padding: 16px;
-        display: block;
-      }
-    </style>
-
-    <iron-media-query query="(max-width: 650px)" query-matches="{{narrow}}"></iron-media-query>
-
-    <div id="trigger" on-tap="_handleOpenDropdown">
-      <slot></slot>
-    </div>
-
-    <iron-dropdown horizontal-align="[[horizontalAlign]]">
-      <paper-material slot="dropdown-content">
-        <dom-if if="[[!forceNarrow]]">
-          <template>
-            <dom-if if="[[!narrow]]">
-              <template>
-                <div class="layout vertical center-justified">
-                  <div class="layout horizontal">
-                    <range-datepicker-calendar disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]"
-                      on-new-year-is-manually-selected="_handleNewYearSelected" enable-year-change="[[enableYearChange]]"
-                      prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth"
-                      hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}" date-from="{{dateFrom}}"
-                      id="firstDatePicker" locale="[[locale]]" month="[[month]]" year="[[year]]">
-                    </range-datepicker-calendar>
-                    <range-datepicker-calendar disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]"
-                      on-new-year-is-manually-selected="_handleNewYearSelected" enable-year-change="[[enableYearChange]]"
-                      next no-range="[[noRange]]" on-next-month="_handleNextMonth"
-                      hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}" date-from="{{dateFrom}}"
-                      locale="[[locale]]" month="[[_monthPlus]]" year="[[_yearPlus]]">
-                    </range-datepicker-calendar>
-                  </div>
-                </div>
-              </template>
-            </dom-if>
-          </template>
-        </dom-if>
-        <dom-if if="[[_isNarrow(forceNarrow, narrow)]]">
-          <template>
-            <range-datepicker-calendar disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]"
-              enable-year-change="[[enableYearChange]]" narrow="[[_isNarrow(forceNarrow, narrow)]]"
-              hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}" date-from="{{dateFrom}}"
-              locale="[[locale]]" month="[[month]]" year="[[year]]" no-range="[[noRange]]"
-              next prev>
-            </range-datepicker-calendar>
-          </template>
-        </dom-if>
-      </paper-material>
-    </iron-dropdown>
-  </template>
   <script>
     /* global RangeDatepickerBehavior */
+    const { html } = Polymer;
     /**
      * `range-datepicker-input`
      *
@@ -203,6 +139,68 @@
         };
       }
 
+      static get template() {
+        return html`
+          <style include="iron-flex iron-flex-alignment">
+            :host {
+              display: block;
+            }
+
+            #firstDatePicker {
+              margin-right: 16px;
+            }
+
+            iron-dropdown {
+              background: white;
+            }
+
+            paper-material {
+              padding: 16px;
+              display: block;
+            }
+          </style>
+          <iron-media-query query="(max-width: 650px)" query-matches="{{narrow}}"></iron-media-query>
+            <div id="trigger" on-tap="_handleOpenDropdown">
+              <slot></slot>
+            </div>
+
+            <iron-dropdown horizontal-align="[[horizontalAlign]]">
+              <paper-material slot="dropdown-content">
+                <dom-if if="[[!forceNarrow]]">
+                  <template>
+                    <dom-if if="[[!narrow]]">
+                      <template>
+                        <div class="layout vertical center-justified">
+                          <div class="layout horizontal">
+                            <range-datepicker-calendar disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]" on-new-year-is-manually-selected="_handleNewYearSelected"
+                              enable-year-change="[[enableYearChange]]" prev no-range="[[noRange]]" on-prev-month="_handlePrevMonth"
+                              hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}" date-from="{{dateFrom}}" id="firstDatePicker"
+                              locale="[[locale]]" month="[[month]]" year="[[year]]">
+                            </range-datepicker-calendar>
+                            <range-datepicker-calendar disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]" on-new-year-is-manually-selected="_handleNewYearSelected"
+                              enable-year-change="[[enableYearChange]]" next no-range="[[noRange]]" on-next-month="_handleNextMonth"
+                              hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}" date-from="{{dateFrom}}" locale="[[locale]]"
+                              month="[[_monthPlus]]" year="[[_yearPlus]]">
+                            </range-datepicker-calendar>
+                          </div>
+                        </div>
+                      </template>
+                    </dom-if>
+                  </template>
+                </dom-if>
+                <dom-if if="[[_isNarrow(forceNarrow, narrow)]]">
+                  <template>
+                    <range-datepicker-calendar disabled-days="[[disabledDays]]" min="[[min]]" max="[[max]]" enable-year-change="[[enableYearChange]]"
+                      narrow="[[_isNarrow(forceNarrow, narrow)]]" hovered-date="{{_hoveredDate}}" date-to="{{dateTo}}"
+                      date-from="{{dateFrom}}" locale="[[locale]]" month="[[month]]" year="[[year]]" no-range="[[noRange]]"
+                      next prev>
+                    </range-datepicker-calendar>
+                  </template>
+                </dom-if>
+              </paper-material>
+            </iron-dropdown>`;
+      }
+
       static get observers() {
         return ['_monthChanged(month, year)'];
       }
@@ -244,7 +242,8 @@
         }
       }
 
-      connectedCallback() {
+      ready() {
+        super.ready();
         if (!this.ctor) {
           const props = {
             __key__: true,
