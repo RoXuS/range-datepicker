@@ -1,5 +1,10 @@
 # Change Log
 
+## [v0.0.25](https://github.com/RoXuS/range-datepicker/tree/0.0.25) (2018-03-30)
+
+* Fix demo paths ([commit](https://github.com/RoXuS/range-datepicker/commit/157dcfb6))
+* Fix eslint error ([commit](https://github.com/RoXuS/range-datepicker/commit/e65cac9d))
+
 ## [v0.0.24](https://github.com/RoXuS/range-datepicker/tree/0.0.24) (2018-03-30)
 
 * Use html template ([commit](https://github.com/RoXuS/range-datepicker/commit/7570e4c4))
