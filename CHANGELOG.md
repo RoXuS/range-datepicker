@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.24](https://github.com/RoXuS/range-datepicker/tree/0.0.24) (2018-03-30)
+
+* Use html template ([commit](https://github.com/RoXuS/range-datepicker/commit/7570e4c4))
+
 ## [v0.0.23](https://github.com/RoXuS/range-datepicker/tree/0.0.23) (2018-03-27)
 
 * Move js into the html ([commit](https://github.com/RoXuS/range-datepicker/commit/8704029))
