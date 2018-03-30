@@ -1,9 +1,8 @@
 language: node_js
 sudo: required
 before_script:
-  - npm install -g polymer-cli
-  - polymer install --variants
-  - npm install -g eslint-config-airbnb@14.1.0 eslint@3.19.0 eslint-plugin-jsx-a11y@4.0.0 eslint-plugin-import@2.2.0 eslint-plugin-react@6.10.3
+  - npm install
+  - npm run install:dependencies
 env:
   global:
     - secure: >-
@@ -20,6 +19,6 @@ addons:
       - google-chrome-stable
   sauce_connect: true
 script:
-  - eslint .
+  - npm run lint:javascript
   - xvfb-run polymer test --skip-plugin sauce --plugin local -l chrome;
 dist: trusty

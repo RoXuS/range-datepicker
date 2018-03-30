@@ -4,8 +4,8 @@
  */
 
 /* eslint no-unused-vars: off */
-/* global Ps */
 
+/* @polymerMixin */
 const RangeDatepickerBehavior = subclass =>
   class extends subclass {
     _localeChanged(locale) {

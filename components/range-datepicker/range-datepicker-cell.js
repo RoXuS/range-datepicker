@@ -45,6 +45,7 @@ class RangeDatepickerCell extends Polymer.Element {
         ((hoveredDate === day.date || day.date < hoveredDate) &&
           day.date > dateFrom &&
           !dateTo &&
+          dateFrom !== undefined &&
           !this._selected) ||
         (day.date > dateFrom && day.date < dateTo)
       ) {
@@ -55,20 +56,16 @@ class RangeDatepickerCell extends Polymer.Element {
 
   _handleTap() {
     if (!this._disabled) {
-      this.dispatchEvent(
-        new CustomEvent('date-is-selected', {
-          detail: { date: this.day.date },
-        })
-      );
+      this.dispatchEvent(new CustomEvent('date-is-selected', {
+        detail: { date: this.day.date },
+      }));
     }
   }
 
   _handleHover() {
-    this.dispatchEvent(
-      new CustomEvent('date-is-hovered', {
-        detail: { date: this.day.date },
-      })
-    );
+    this.dispatchEvent(new CustomEvent('date-is-hovered', {
+      detail: { date: this.day.date },
+    }));
   }
 
   _isSelected(selected) {
