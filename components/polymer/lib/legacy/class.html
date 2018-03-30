@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       attributeChanged: true,
       // meta objects
       behaviors: true
-    }
+    };
 
     /**
      * Applies a "legacy" behavior or array of behaviors to the provided class.
@@ -33,18 +33,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * to ensure that any legacy behaviors can rely on legacy Polymer API on
      * the underlying element.
      *
-     * @param {!(Object|Array)} behaviors Behavior object or array of behaviors.
-     * @param {!HTMLElement|function(new:HTMLElement)} klass Element class.
-     * @return {function(new:HTMLElement)} Returns a new Element class extended by the
+     * @template T
+     * @param {!Object|!Array<!Object>} behaviors Behavior object or array of behaviors.
+     * @param {function(new:T)} klass Element class.
+     * @return {function(new:T)} Returns a new Element class extended by the
      * passed in `behaviors` and also by `Polymer.LegacyElementMixin`.
      * @memberof Polymer
      * @suppress {invalidCasts, checkTypes}
      */
     function mixinBehaviors(behaviors, klass) {
       if (!behaviors) {
-        return /** @type {HTMLElement} */(klass);
+        klass = /** @type {HTMLElement} */(klass); // eslint-disable-line no-self-assign
+        return klass;
       }
-      // NOTE: ensure the bahevior is extending a class with
+      // NOTE: ensure the behavior is extending a class with
       // legacy element api. This is necessary since behaviors expect to be able
       // to access 1.x legacy api.
       klass = Polymer.LegacyElementMixin(klass);
@@ -161,11 +163,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             // next look for superclass template (note: use superclass symbol
             // to ensure correct `this.is`)
             Base.template ||
-            // finally fall back to `_template` in element's protoype.
+            // finally fall back to `_template` in element's prototype.
             this.prototype._template ||
             null;
         }
 
+        /**
+         * @return {void}
+         */
         created() {
           super.created();
           if (info.created) {
@@ -173,6 +178,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
 
+        /**
+         * @return {void}
+         */
         _registered() {
           super._registered();
           /* NOTE: `beforeRegister` is called here for bc, but the behavior
@@ -190,6 +198,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
 
+        /**
+         * @return {void}
+         */
         _applyListeners() {
           super._applyListeners();
           if (info.listeners) {
@@ -202,6 +213,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // note: exception to "super then me" rule;
         // do work before calling super so that super attributes
         // only apply if not already set.
+        /**
+         * @return {void}
+         */
         _ensureAttributes() {
           if (info.hostAttributes) {
             for (let a in info.hostAttributes) {
@@ -211,6 +225,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           super._ensureAttributes();
         }
 
+        /**
+         * @return {void}
+         */
         ready() {
           super.ready();
           if (info.ready) {
@@ -218,6 +235,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
 
+        /**
+         * @return {void}
+         */
         attached() {
           super.attached();
           if (info.attached) {
@@ -225,6 +245,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
 
+        /**
+         * @return {void}
+         */
         detached() {
           super.detached();
           if (info.detached) {
@@ -232,6 +255,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
 
+        /**
+         * Implements native Custom Elements `attributeChangedCallback` to
+         * set an attribute value to a property via `_attributeToProperty`.
+         *
+         * @param {string} name Name of attribute that changed
+         * @param {?string} old Old attribute value
+         * @param {?string} value New attribute value
+         * @return {void}
+         */
         attributeChanged(name, old, value) {
           super.attributeChanged(name, old, value);
           if (info.attributeChanged) {
@@ -240,7 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }
       }
 
-      PolymerGenerated.generatedFrom = info
+      PolymerGenerated.generatedFrom = info;
 
       for (let p in info) {
         // NOTE: cannot copy `metaProps` methods onto prototype at least because
@@ -335,7 +367,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // decorate klass with registration info
       klass.is = info.is;
       return klass;
-    }
+    };
 
     Polymer.mixinBehaviors = mixinBehaviors;
 

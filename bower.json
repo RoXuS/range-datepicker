@@ -2,9 +2,7 @@
   "name": "range-datepicker",
   "main": "range-datepicker.html",
   "version": "0.0.3",
-  "authors": [
-    "Julien Rousseau <RoXuS>"
-  ],
+  "authors": ["Julien Rousseau <RoXuS>"],
   "description": "range-datepicker provides a simple datepicker with range.",
   "keywords": [
     "web-component",
@@ -14,7 +12,7 @@
     "range"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0",
+    "polymer": "Polymer/polymer#^2.6.0",
     "moment": "^2.18.1",
     "paper-styles": "PolymerElements/paper-styles#^2.0.0",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",

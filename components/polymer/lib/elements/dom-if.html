@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * data-binding and declarative event features when used in the context of
    * a Polymer element's template.
    *
-   * When `if` becomes falsey, the stamped content is hidden but not
+   * When `if` becomes falsy, the stamped content is hidden but not
    * removed from dom. When `if` subsequently becomes truthy again, the content
    * is simply re-shown. This approach is used due to its favorable performance
    * characteristics: the expense of creating template content is paid only
@@ -80,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '__debounceRender'
         }
 
-      }
+      };
 
     }
 
@@ -117,6 +117,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Polymer.enqueueDebouncer(this.__renderDebouncer);
     }
 
+    /**
+     * @return {void}
+     */
     disconnectedCallback() {
       super.disconnectedCallback();
       if (!this.parentNode ||
@@ -126,8 +129,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
+    /**
+     * @return {void}
+     */
     connectedCallback() {
       super.connectedCallback();
+      this.style.display = 'none';
       if (this.if) {
         this.__debounceRender();
       }
@@ -139,6 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      * that multiple changes trigger only a single render. The render method
      * should be called if, for example, template rendering is required to
      * validate application state.
+     * @return {void}
      */
     render() {
       Polymer.flush();
@@ -171,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Guard against element being detached while render was queued
       if (parentNode) {
         if (!this.__ctor) {
-          let template = this.querySelector('template');
+          let template = /** @type {HTMLTemplateElement} */(this.querySelector('template'));
           if (!template) {
             // Wait until childList changes and template should be there by then
             let observer = new MutationObserver(() => {
@@ -181,7 +189,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               } else {
                 throw new Error('dom-if requires a <template> child');
               }
-            })
+            });
             observer.observe(this, {childList: true});
             return false;
           }
@@ -256,6 +264,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
+    /**
+     * Shows or hides the template instance top level child elements. For
+     * text nodes, `textContent` is removed while "hidden" and replaced when
+     * "shown."
+     * @return {void}
+     * @protected
+     */
     _showHideChildren() {
       let hidden = this.__hideTemplateChildren__ || !this.if;
       if (this.__instance) {

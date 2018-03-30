@@ -19,23 +19,16 @@
   "license": "BSD-3-Clause",
   "ignore": [],
   "devDependencies": {
-    "web-component-tester": "^v6.0.0",
-    "custom-elements": "webcomponents/custom-elements#^v1.0.0",
-    "es6-promise": "stefanpenner/es6-promise#^4.0.0",
-    "html-imports": "webcomponents/html-imports#^v1.0.0",
-    "shadydom": "webcomponents/shadydom#^v1.0.0",
-    "shadycss": "webcomponents/shadycss#^v1.0.0",
-    "template": "webcomponents/template#^v1.0.0",
-    "webcomponents-platform": "webcomponents/webcomponents-platform#^v1.0.0"
+    "web-component-tester": "^v6.0.0"
   },
-  "version": "1.0.4",
-  "_release": "1.0.4",
+  "version": "1.1.1",
+  "_release": "1.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.4",
-    "commit": "f01672c05cca9ec5839b064d2f5e1da73f01ea10"
+    "tag": "v1.1.1",
+    "commit": "2bb2c2c92008d2354b75c0fa633ea404c5c999c3"
   },
   "_source": "https://github.com/webcomponents/webcomponentsjs.git",
-  "_target": "^1.0.0",
+  "_target": "^v1.1.0",
   "_originalSource": "webcomponents/webcomponentsjs"
 }
