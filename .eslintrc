@@ -31,8 +31,7 @@
   "plugins": ["html"],
   "env": {
     "mocha": true,
-    "browser": true,
-    "node": true
+    "browser": true
   },
   "globals": {
     "Polymer": true,
@@ -40,9 +39,8 @@
     "flush": true,
     "expect": true,
     "fixture": true,
-    "DtToolsBehavior": true,
-    "DtPagesBehavior": true,
     "moment": true,
-    "assert": true
+    "assert": true,
+    "RangeDatepickerBehavior"
   }
 }
