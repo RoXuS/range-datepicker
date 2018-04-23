@@ -1,5 +1,8 @@
 [![Build status](https://travis-ci.org/RoXuS/range-datepicker.svg?branch=master)](https://travis-ci.org/RoXuS/range-datepicker)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/roxus/range-datepicker)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/roxus/range-datepicker)  
+
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/RoXuSrange-datepicker)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/RoXuSrange-datepicker.svg)](https://vaadin.com/directory/component/RoXuSrange-datepicker)
 
 ## &lt;range-datepicker&gt;
 
