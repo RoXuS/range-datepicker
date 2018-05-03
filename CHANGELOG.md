@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.0.26](https://github.com/RoXuS/range-datepicker/tree/0.0.26) (2018-05-03)
+
+* Try to freeze node version ([commit](https://github.com/RoXuS/range-datepicker/commit/466893ce))
+* Bump wct and polymer-cli ([commit](https://github.com/RoXuS/range-datepicker/commit/e2ebe7e1))
+* Fix when range is selected twice ([commit](https://github.com/RoXuS/range-datepicker/commit/7102b198))
+* Added 4 star rating badge ([commit](https://github.com/RoXuS/range-datepicker/commit/e48169c5))
+
 ## [v0.0.25](https://github.com/RoXuS/range-datepicker/tree/0.0.25) (2018-03-30)
 
 * Fix demo paths ([commit](https://github.com/RoXuS/range-datepicker/commit/157dcfb6))
