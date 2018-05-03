@@ -144,7 +144,7 @@ class RangeDatepickerCalendar extends Polymer.Element {
     if (!this.noRange) {
       if (this.dateFrom && this.dateTo) {
         this.dateFrom = date;
-        this.dateTo = 0;
+        this.dateTo = null;
         this.hoveredDate = undefined;
       } else if (!this.dateFrom || (this.dateFrom && date < this.dateFrom)) {
         this.dateFrom = date;
