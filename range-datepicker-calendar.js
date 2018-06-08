@@ -63,15 +63,17 @@ class RangeDatepickerCalendar extends Polymer.Element {
     };
   }
 
-  _localeChanged(locale) {
-    const dayNamesOfTheWeek = moment.localeData(locale).weekdaysMin();
-    const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
-    const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
-    const newDayNamesOfTheWeek = dayNamesOfTheWeek
-      .slice()
-      .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
-      .concat(tmp);
-    this.set('_dayNamesOfTheWeek', newDayNamesOfTheWeek);
+  _localeChanged() {
+    if (moment.localeData(this.locale)) {
+      const dayNamesOfTheWeek = moment.localeData(this.locale).weekdaysMin();
+      const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
+      const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
+      const newDayNamesOfTheWeek = dayNamesOfTheWeek
+        .slice()
+        .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
+        .concat(tmp);
+      this.set('_dayNamesOfTheWeek', newDayNamesOfTheWeek);
+    }
   }
 
   static get observers() {
