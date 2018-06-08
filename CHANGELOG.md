@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.27](https://github.com/RoXuS/range-datepicker/tree/0.0.27) (2018-06-08)
+
+- Ensure localeData is set before use it ([commit](https://github.com/RoXuS/range-datepicker/commit/43bdcff2))
+
 ## [v0.0.26](https://github.com/RoXuS/range-datepicker/tree/0.0.26) (2018-05-03)
 
 * Try to freeze node version ([commit](https://github.com/RoXuS/range-datepicker/commit/466893ce))
