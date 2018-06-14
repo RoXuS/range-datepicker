@@ -1,5 +1,9 @@
 # Change Log
 
+## [v0.0.28](https://github.com/RoXuS/range-datepicker/tree/0.0.28) (2018-06-14)
+- Prefer Number.isNaN ([commit](https://github.com/RoXuS/range-datepicker/commit/93094b7b))
+- Ensure we have a int value ([commit](https://github.com/RoXuS/range-datepicker/commit/9de1c0b8))
+
 ## [v0.0.27](https://github.com/RoXuS/range-datepicker/tree/0.0.27) (2018-06-08)
 
 - Ensure localeData is set before use it ([commit](https://github.com/RoXuS/range-datepicker/commit/43bdcff2))
