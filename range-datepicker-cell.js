@@ -37,17 +37,19 @@ class RangeDatepickerCell extends Polymer.Element {
   _dateChanged(dateFrom, dateTo, hoveredDate, day) {
     this._selected = false;
     this._hovered = false;
+    const parsedDateFrom = parseInt(dateFrom, 10);
+    const parsedDateTo = parseInt(dateTo, 10);
     if (day) {
-      if (dateTo === day.date || dateFrom === day.date) {
+      if (parsedDateTo === day.date || parsedDateFrom === day.date) {
         this._selected = true;
       }
       if (
         ((hoveredDate === day.date || day.date < hoveredDate) &&
-          day.date > dateFrom &&
-          !dateTo &&
-          dateFrom !== undefined &&
+          day.date > parsedDateFrom &&
+          !parsedDateTo &&
+          parsedDateFrom !== NaN &&
           !this._selected) ||
-        (day.date > dateFrom && day.date < dateTo)
+        (day.date > parsedDateFrom && day.date < parsedDateTo)
       ) {
         this._hovered = true;
       }
