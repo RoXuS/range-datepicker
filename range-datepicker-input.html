@@ -22,10 +22,7 @@
      * @demo demo/index.html
      * @appliesMixin RangeDatepickerBehavior
      */
-    class RangeDatepickerInput extends Polymer.mixinBehaviors(
-      [Polymer.Templatizer],
-      RangeDatepickerBehavior(Polymer.Element)
-    ) {
+    class RangeDatepickerInput extends RangeDatepickerBehavior(Polymer.LegacyElementMixin(Polymer.Element)) {
       static get is() {
         return 'range-datepicker-input';
       }
@@ -84,6 +81,7 @@
             type: String,
             notify: true,
             observer: '_dateFromChanged',
+            value: () => null,
           },
           /**
            * Date to.
@@ -93,6 +91,7 @@
             type: String,
             notify: true,
             observer: '_dateToChanged',
+            value: () => null,
           },
           /**
            * Current hovered date.
@@ -136,6 +135,22 @@
             value: 'left',
           },
           _isNarrow: Function,
+          _parentTemplate: {
+            type: Element,
+            value: () => null,
+          },
+          ctor: {
+            type: Function,
+            value: () => null,
+          },
+          instances: {
+            type: Array,
+            value: () => [],
+          },
+          instance: {
+            type: Object,
+            value: () => { },
+          },
         };
       }
 
@@ -205,11 +220,6 @@
         return ['_monthChanged(month, year)'];
       }
 
-      constructor() {
-        super();
-        this.instances = [];
-      }
-
       _handleOpenDropdown() {
         this.shadowRoot.querySelector('iron-dropdown').open();
       }
@@ -242,13 +252,14 @@
         }
       }
 
-      ready() {
-        super.ready();
+      connectedCallback() {
         if (!this.ctor) {
           const props = {
             __key__: true,
             [this.dateTo]: true,
             [this.dateFrom]: true,
+            dateTo: true,
+            dateFrom: true,
           };
           this._parentTemplate = this.queryEffectiveChildren('template');
           this.ctor = Polymer.Templatize.templatize(this._parentTemplate, this, {
@@ -266,10 +277,10 @@
       _ensureTemplatized() {
         this.instance = new this.ctor({ dateTo: '', dateFrom: '' });
         this.instances.push(this.instance);
+        this._itemsParent.appendChild(this.instance.root);
 
         const dateFrom = this.dateFrom ? this._formatDate(this.dateFrom) : '';
         const dateTo = this.dateTo ? this._formatDate(this.dateTo) : '';
-        this._itemsParent.appendChild(this.instance.root);
         if (dateFrom) {
           this.instance.dateFrom = dateFrom;
         }
