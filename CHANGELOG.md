@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.29](https://github.com/RoXuS/range-datepicker/tree/0.0.29) (2018-07-10)
+- Fix instances ([commit](https://github.com/RoXuS/range-datepicker/commit/a766bed3))
+
 ## [v0.0.28](https://github.com/RoXuS/range-datepicker/tree/0.0.28) (2018-06-14)
 - Prefer Number.isNaN ([commit](https://github.com/RoXuS/range-datepicker/commit/93094b7b))
 - Ensure we have a int value ([commit](https://github.com/RoXuS/range-datepicker/commit/9de1c0b8))
