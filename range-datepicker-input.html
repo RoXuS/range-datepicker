@@ -223,6 +223,10 @@
       _handleOpenDropdown() {
         this.shadowRoot.querySelector('iron-dropdown').open();
       }
+      
+       closeDropdown() {
+        this.shadowRoot.querySelector('iron-dropdown').close();
+      }
 
       _formatDate(date) {
         if (date) {
