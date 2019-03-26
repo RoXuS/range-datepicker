@@ -1,6 +1,9 @@
 {
   "name": "range-datepicker",
-  "main": "range-datepicker.html",
+  "main": [
+    "range-datepicker.html",
+    "range-datepicker-input.html"
+  ],
   "version": "0.0.31",
   "authors": [
     "Julien Rousseau <RoXuS>"
