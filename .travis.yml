@@ -2,13 +2,11 @@ language: node_js
 sudo: required
 before_script:
   - npm install
-  - npm run install:dependencies
+  - 'npm run install:dependencies'
 env:
   global:
-    - secure: >-
-        HWwX1XiMfkZkC5XzAz6HkMJcFR+O1DZ+g9hnogZ0e3zdjqZ8VFkCsx0glJLA4TIPdWDfq93gRmeGtbepIx0x4BVOWX8rqoIjb9fbNJDU4ItZsbOvDLInFqKevdq+/klDavVfbR4hNeaHgDmcIEa/IolDU0qIrIdefBfZLOQ0ajM=
-    - secure: >-
-        hBkZz41jJfEP+Z8Uwcw3/EWDLLBzKT+WKY/XI7ubT/bxlXn95RJqY+j1pBX7+fHfLrUfjRmQHTsqkkST2JwRGAZoZpBX+lmUuNRyMoYsDKMl+CYinhSNTVVGSv7JPt5Ls5fktfzIt6Qd97vBy25hcCGKB6HBy+ppfP2DuII4uC8=
+    - secure: HWwX1XiMfkZkC5XzAz6HkMJcFR+O1DZ+g9hnogZ0e3zdjqZ8VFkCsx0glJLA4TIPdWDfq93gRmeGtbepIx0x4BVOWX8rqoIjb9fbNJDU4ItZsbOvDLInFqKevdq+/klDavVfbR4hNeaHgDmcIEa/IolDU0qIrIdefBfZLOQ0ajM=
+    - secure: hBkZz41jJfEP+Z8Uwcw3/EWDLLBzKT+WKY/XI7ubT/bxlXn95RJqY+j1pBX7+fHfLrUfjRmQHTsqkkST2JwRGAZoZpBX+lmUuNRyMoYsDKMl+CYinhSNTVVGSv7JPt5Ls5fktfzIt6Qd97vBy25hcCGKB6HBy+ppfP2DuII4uC8=
 node_js: 9.11.1
 addons:
   firefox: latest
@@ -19,6 +17,7 @@ addons:
       - google-chrome-stable
   sauce_connect: true
 script:
-  - npm run lint:javascript
-  - xvfb-run polymer test --skip-plugin sauce --plugin local -l chrome;
+  - 'npm run lint:javascript'
+  - xvfb-run polymer test --module-resolution=node --npm --skip-plugin sauce --plugin local -l chrome;
 dist: trusty
+

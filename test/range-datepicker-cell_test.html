@@ -10,7 +10,7 @@
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
 
-  <link rel="import" href="../range-datepicker-cell.html">
+  <script type="module" src="../range-datepicker-cell.js"></script>
 </head>
 
 <body>
@@ -39,90 +39,91 @@
     </template>
   </test-fixture>
 
-  <script>
-    suite('rangeDatepickerCell', () => {
-      test('disabled and min max work together', () => {
-        const element = fixture('rangeDatepickerCellMinMaxDisabled');
-        assert.isFalse(element._disabled);
-        element.day = { date: 1501797600 };
-        assert.isTrue(element._disabled);
-        element.day = { date: 1501279200 };
-        assert.isTrue(element._disabled);
-        element.day = { date: 1501538400 };
-        assert.isFalse(element._disabled);
-        element.day = { date: 1501711200 };
-        assert.isFalse(element._disabled);
-        element.day = { date: 1501624800 };
-        assert.isTrue(element._disabled);
-      });
+  <script type="module">
+import '../range-datepicker-cell.js';
+suite('rangeDatepickerCell', () => {
+  test('disabled and min max work together', () => {
+    const element = fixture('rangeDatepickerCellMinMaxDisabled');
+    assert.isFalse(element._disabled);
+    element.day = { date: 1501797600 };
+    assert.isTrue(element._disabled);
+    element.day = { date: 1501279200 };
+    assert.isTrue(element._disabled);
+    element.day = { date: 1501538400 };
+    assert.isFalse(element._disabled);
+    element.day = { date: 1501711200 };
+    assert.isFalse(element._disabled);
+    element.day = { date: 1501624800 };
+    assert.isTrue(element._disabled);
+  });
 
-      test('disabled works', () => {
-        const element = fixture('rangeDatepickerCellDisabled');
-        assert.isFalse(element._disabled);
-        element.day = { date: 1501884000 };
-        assert.isFalse(element._disabled);
-        element.day = { date: 1504908000 };
-        assert.isTrue(element._disabled);
-        element.day = { date: 1499292000 };
-        assert.isFalse(element._disabled);
-      });
+  test('disabled works', () => {
+    const element = fixture('rangeDatepickerCellDisabled');
+    assert.isFalse(element._disabled);
+    element.day = { date: 1501884000 };
+    assert.isFalse(element._disabled);
+    element.day = { date: 1504908000 };
+    assert.isTrue(element._disabled);
+    element.day = { date: 1499292000 };
+    assert.isFalse(element._disabled);
+  });
 
-      test('min and max works', () => {
-        const element = fixture('rangeDatepickerCellMinMax');
-        assert.isFalse(element._disabled);
-        element.day = { date: 1501884000 };
-        assert.isTrue(element._disabled);
-        element.day = { date: 1501624800 };
-        assert.isFalse(element._disabled);
-        element.day = { date: 1499292000 };
-        assert.isTrue(element._disabled);
-      });
+  test('min and max works', () => {
+    const element = fixture('rangeDatepickerCellMinMax');
+    assert.isFalse(element._disabled);
+    element.day = { date: 1501884000 };
+    assert.isTrue(element._disabled);
+    element.day = { date: 1501624800 };
+    assert.isFalse(element._disabled);
+    element.day = { date: 1499292000 };
+    assert.isTrue(element._disabled);
+  });
 
-      test('disabled', () => {
-        const element = fixture('rangeDatepickerCellMinMax');
-        assert.isFalse(element._disabled);
-        element.day = { date: 1501884000 };
-        assert.isTrue(element._disabled);
-        element.day = { date: 1501624800 };
-        assert.isFalse(element._disabled);
-        element.day = { date: 1499292000 };
-        assert.isTrue(element._disabled);
-      });
+  test('disabled', () => {
+    const element = fixture('rangeDatepickerCellMinMax');
+    assert.isFalse(element._disabled);
+    element.day = { date: 1501884000 };
+    assert.isTrue(element._disabled);
+    element.day = { date: 1501624800 };
+    assert.isFalse(element._disabled);
+    element.day = { date: 1499292000 };
+    assert.isTrue(element._disabled);
+  });
 
-      test('_selected and _hovered are correct', () => {
-        const element = fixture('rangeDatepickerCell');
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged(1, 0, 0, { date: 1 });
-        assert.isTrue(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged();
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged(0, undefined, 3, { date: 2 });
-        assert.isFalse(element._selected);
-        assert.isTrue(element._hovered);
-        element._dateChanged();
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged(0, 3, undefined, { date: 2 });
-        assert.isFalse(element._selected);
-        assert.isTrue(element._hovered);
-        element._dateChanged();
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged(0, 3, undefined, { date: 4 });
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged();
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-        element._dateChanged(0, undefined, 3, { date: 4 });
-        assert.isFalse(element._selected);
-        assert.isFalse(element._hovered);
-      });
-    });
-  </script>
+  test('_selected and _hovered are correct', () => {
+    const element = fixture('rangeDatepickerCell');
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged(1, 0, 0, { date: 1 });
+    assert.isTrue(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged();
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged(0, undefined, 3, { date: 2 });
+    assert.isFalse(element._selected);
+    assert.isTrue(element._hovered);
+    element._dateChanged();
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged(0, 3, undefined, { date: 2 });
+    assert.isFalse(element._selected);
+    assert.isTrue(element._hovered);
+    element._dateChanged();
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged(0, 3, undefined, { date: 4 });
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged();
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+    element._dateChanged(0, undefined, 3, { date: 4 });
+    assert.isFalse(element._selected);
+    assert.isFalse(element._hovered);
+  });
+});
+</script>
 
 </body>
 

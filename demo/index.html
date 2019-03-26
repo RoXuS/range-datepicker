@@ -7,26 +7,36 @@
 
   <title>range-datepicker demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../node_modules/web-animations-js/web-animations-next.min.js"></script>
 
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
-  <link rel="import" href="../../paper-input/paper-input.html">
-  <link rel="import" href="../range-datepicker.html">
-  <link rel="import" href="../range-datepicker-input.html">
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-ajax/iron-ajax.js"></script>
+  <script type="module" src="../node_modules/@polymer/paper-input/paper-input.js"></script>
+  <script type="module" src="../range-datepicker.js"></script>
+  <script type="module" src="../range-datepicker-input.js"></script>
 
-  <custom-style>
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<custom-style>
     <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
       div>paper-input:nth-child(1) {
         margin-right: 12px;
       }
     </style>
-  </custom-style>
+  </custom-style>`;
+
+    document.body.appendChild($_documentContainer.content);
+  </script>
 </head>
 
 <body>
-  <div class="vertical-section-container centered">
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range</h3>
     <demo-snippet>
       <template>
@@ -39,9 +49,15 @@
         </dom-bind>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker-input by using your custom inputs (with template)</h3>
     <demo-snippet>
       <template>
@@ -50,8 +66,8 @@
             <range-datepicker-input date-format="MM/DD/YYYY">
               <template>
                 <div class="layout horizontal center">
-                  <paper-input label="Date from" value="[[dateFrom]]" readonly></paper-input>
-                  <paper-input label="Date to" value="[[dateTo]]" readonly></paper-input>
+                  <paper-input label="Date from" value="[[dateFrom]]" readonly=""></paper-input>
+                  <paper-input label="Date to" value="[[dateTo]]" readonly=""></paper-input>
                 </div>
               </template>
             </range-datepicker-input>
@@ -59,9 +75,15 @@
         </dom-bind>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with preselection of the month</h3>
     <demo-snippet>
       <template>
@@ -74,63 +96,102 @@
         </dom-bind>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with min and max</h3>
     <demo-snippet>
       <template>
         <range-datepicker month="08" year="2017" min="1504216800" max="1504908000"></range-datepicker>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with disabled day</h3>
     <demo-snippet>
       <template>
-        <range-datepicker month="08" year="2017" disabled-days='["1504994400","1504908000","1502402400"]'></range-datepicker>
+        <range-datepicker month="08" year="2017" disabled-days="[&quot;1504994400&quot;,&quot;1504908000&quot;,&quot;1502402400&quot;]"></range-datepicker>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker with option to change year</h3>
     <demo-snippet>
       <template>
-        <range-datepicker enable-year-change></range-datepicker>
+        <range-datepicker enable-year-change=""></range-datepicker>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker no-range</h3>
     <demo-snippet>
       <template>
-        <range-datepicker no-range></range-datepicker>
+        <range-datepicker no-range=""></range-datepicker>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker forceNarrow</h3>
     <demo-snippet>
       <template>
         <div class="horizontal-section-container centered">
-          <range-datepicker no-range force-narrow></range-datepicker>
+          <range-datepicker no-range="" force-narrow=""></range-datepicker>
         </div>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with locale</h3>
     <demo-snippet>
       <template>
         <range-datepicker locale="fr"></range-datepicker>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
+
+    document.body.appendChild($_documentContainer.content);
+  </script>
 </body>
 
 </html>
