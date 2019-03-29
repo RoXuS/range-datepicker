@@ -7,7 +7,7 @@
     "datepicker",
     "range"
   ],
-  "name": "range-datepicker",
+  "name": "@doubletrade/range-datepicker",
   "main": "range-datepicker.js",
   "author": "Julien Rousseau <RoXuS>",
   "version": "0.0.31",
