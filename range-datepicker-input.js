@@ -122,6 +122,10 @@ class RangeDatepickerInput extends
         type: String,
         value: 'left',
       },
+      verticalAlign: {
+        type: String,
+        value: 'top',
+      },
       _isNarrow: Function,
       _parentTemplate: {
         type: Element,
@@ -139,6 +143,14 @@ class RangeDatepickerInput extends
         type: Object,
         value: () => { },
       },
+      dropdownPosition: {
+        type: String,
+        value: 'fixed',
+      },
+      verticalOffset: {
+        type: Number,
+        value: 0,
+      }
     };
   }
 
@@ -167,7 +179,7 @@ class RangeDatepickerInput extends
           <slot></slot>
         </div>
 
-        <iron-dropdown no-overlap vertical-align="top" allow-outside-scroll horizontal-align="[[horizontalAlign]]">
+        <iron-dropdown no-overlap allow-outside-scroll vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]">
           <paper-material slot="dropdown-content">
             <dom-if if="[[!forceNarrow]]">
               <template>
@@ -206,6 +218,22 @@ class RangeDatepickerInput extends
 
   static get observers() {
     return ['_monthChanged(month, year)'];
+  }
+
+  ready() {
+    super.ready();
+    if (this.dropdownPosition === 'absolute') {
+      this._setAbsolutePositioning();
+    }
+  }
+
+  _setAbsolutePositioning(e) {
+    const ironDropdownEl = this.shadowRoot.querySelector('iron-dropdown');
+    ironDropdownEl.resetFit();
+    ironDropdownEl.style.position = 'absolute';
+    ironDropdownEl.style.top = this.verticalOffset;
+    ironDropdownEl.style.left = '0';
+    ironDropdownEl.fit();
   }
 
   _handleOpenDropdown() {
