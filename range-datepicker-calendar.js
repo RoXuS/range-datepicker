@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { PolymerElement } from '@polymer/polymer/polymer-element';
 import { html } from '@polymer/polymer/lib/utils/html-tag';
 import '@polymer/paper-dropdown-menu/paper-dropdown-menu';
@@ -7,6 +6,8 @@ import '@polymer/paper-item/paper-item';
 import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/paper-styles/paper-styles';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
+import moment from 'moment';
+import 'moment/src/locale/fr';
 import './range-datepicker-cell';
 
 /**
@@ -142,7 +143,7 @@ class RangeDatepickerCalendar extends PolymerElement {
           </div>
           <dom-if if="[[enableYearChange]]">
             <template>
-              <paper-dropdown-menu no-label-float="">
+              <paper-dropdown-menu no-label-float>
                 <paper-listbox slot="dropdown-content" selected="{{year}}" attr-for-selected="data-name">
                   <dom-repeat items="[[_yearsList]]" as="yearList">
                     <template>
@@ -195,6 +196,7 @@ class RangeDatepickerCalendar extends PolymerElement {
   static get is() {
     return 'range-datepicker-calendar';
   }
+
   static get properties() {
     return {
       month: String,
