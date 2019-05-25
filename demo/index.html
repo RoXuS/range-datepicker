@@ -1,42 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-
   <title>range-datepicker demo</title>
-
-  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-  <script src="../node_modules/web-animations-js/web-animations-next.min.js"></script>
-
-  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
-  <script type="module" src="../node_modules/@polymer/iron-ajax/iron-ajax.js"></script>
-  <script type="module" src="../node_modules/@polymer/paper-input/paper-input.js"></script>
-  <script type="module" src="../range-datepicker.js"></script>
-  <script type="module" src="../range-datepicker-input.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
+  <script src="../node_modules/web-animations-js/web-animations-next-lite.min.js"></script>
 
   <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<custom-style>
-    <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
-      div>paper-input:nth-child(1) {
-        margin-right: 12px;
-      }
-    </style>
-  </custom-style>`;
-
-    document.body.appendChild($_documentContainer.content);
+    import '@polymer/iron-demo-helpers/demo-snippet.js';
+    import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+    import '@polymer/polymer/lib/elements/dom-bind.js';
+    import '../range-datepicker.js';
+    import '../range-datepicker-input.js';
   </script>
-</head>
 
-<body>
+<body unresolved>
   <script type="module">
-    const $_documentContainer = document.createElement('template');
+    import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+    const template = html`
+          <custom-style>
+            <style is="custom-style" include="demo-pages-shared-styles">
+              .centered {
+                max-width: 800px !important;
+              }
+            </style>
+          </custom-style>
+        `;
+    document.body.appendChild(template.content);
+  </script>
 
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+
+  <div class="vertical-section-container centered">
     <h3>Basic range-datepicker range</h3>
     <demo-snippet>
       <template>
@@ -44,30 +40,22 @@
           <template>
             <div>Date from : [[dateFrom]]</div>
             <div>Date to : [[dateTo]]</div>
-            <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}"></range-datepicker>
+            <range-datepicker date-from="{{dateFrom}}" date-to="{{dateTo}}" locale="fr"></range-datepicker>
           </template>
         </dom-bind>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker-input by using your custom inputs (with template)</h3>
     <demo-snippet>
       <template>
         <dom-bind>
           <template>
-            <range-datepicker-input date-format="MM/DD/YYYY">
+            <range-datepicker-input date-format="MM/dd/yyyy">
               <template>
                 <div class="layout horizontal center">
-                  <paper-input label="Date from" value="[[dateFrom]]" readonly=""></paper-input>
-                  <paper-input label="Date to" value="[[dateTo]]" readonly=""></paper-input>
+                  <paper-input label="Date from" value="[[dateFrom]]" readonly></paper-input>
+                  <paper-input label="Date to" value="[[dateTo]]" readonly></paper-input>
                 </div>
               </template>
             </range-datepicker-input>
@@ -75,15 +63,7 @@
         </dom-bind>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with preselection of the month</h3>
     <demo-snippet>
       <template>
@@ -96,102 +76,52 @@
         </dom-bind>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with min and max</h3>
     <demo-snippet>
       <template>
         <range-datepicker month="08" year="2017" min="1504216800" max="1504908000"></range-datepicker>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with disabled day</h3>
     <demo-snippet>
       <template>
         <range-datepicker month="08" year="2017" disabled-days="[&quot;1504994400&quot;,&quot;1504908000&quot;,&quot;1502402400&quot;]"></range-datepicker>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker with option to change year</h3>
     <demo-snippet>
       <template>
-        <range-datepicker enable-year-change=""></range-datepicker>
+        <range-datepicker enable-year-change></range-datepicker>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker no-range</h3>
     <demo-snippet>
       <template>
-        <range-datepicker no-range=""></range-datepicker>
+        <range-datepicker no-range></range-datepicker>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker forceNarrow</h3>
     <demo-snippet>
       <template>
         <div class="horizontal-section-container centered">
-          <range-datepicker no-range="" force-narrow=""></range-datepicker>
+          <range-datepicker no-range force-narrow></range-datepicker>
         </div>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
-
-  <script type="module">
-    const $_documentContainer = document.createElement('template');
-
-    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h3>Basic range-datepicker range with locale</h3>
     <demo-snippet>
       <template>
         <range-datepicker locale="fr"></range-datepicker>
       </template>
     </demo-snippet>
-  </div>`;
 
-    document.body.appendChild($_documentContainer.content);
-  </script>
+  </div>
 </body>
 
 </html>
