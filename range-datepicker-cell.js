@@ -53,6 +53,7 @@ class RangeDatepickerCell extends PolymerElement {
   static get is() {
     return 'range-datepicker-cell';
   }
+
   static get properties() {
     return {
       day: Object,
@@ -95,13 +96,13 @@ class RangeDatepickerCell extends PolymerElement {
         this._selected = true;
       }
       if (
-        ((hoveredDate === day.date || day.date < hoveredDate) &&
-          day.date > parsedDateFrom &&
-          !parsedDateTo &&
-          !Number.isNaN(parsedDateFrom) &&
-          parsedDateFrom !== undefined &&
-          !this._selected) ||
-        (day.date > parsedDateFrom && day.date < parsedDateTo)
+        ((hoveredDate === day.date || day.date < hoveredDate)
+          && day.date > parsedDateFrom
+          && !parsedDateTo
+          && !Number.isNaN(parsedDateFrom)
+          && parsedDateFrom !== undefined
+          && !this._selected)
+        || (day.date > parsedDateFrom && day.date < parsedDateTo)
       ) {
         this._hovered = true;
       }
@@ -140,9 +141,9 @@ class RangeDatepickerCell extends PolymerElement {
     this._disabled = false;
     if (disabledDays && day && day.date) {
       if (
-        day.date < min ||
-        day.date > max ||
-        disabledDays.findIndex(disabledDay => parseInt(disabledDay, 10) === day.date) !== -1
+        day.date < min
+        || day.date > max
+        || disabledDays.findIndex(disabledDay => parseInt(disabledDay, 10) === day.date) !== -1
       ) {
         this._disabled = true;
         return 'disabled';

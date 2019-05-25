@@ -4,11 +4,16 @@ import '@polymer/paper-dropdown-menu/paper-dropdown-menu';
 import '@polymer/paper-listbox/paper-listbox';
 import '@polymer/paper-item/paper-item';
 import '@polymer/paper-icon-button/paper-icon-button';
+import '@polymer/iron-icons/iron-icons';
 import '@polymer/paper-styles/paper-styles';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
-import moment from 'moment';
-import 'moment/src/locale/fr';
+import {
+  format, parse, addDays, endOfMonth, getDay, addMonths, addYears, subMonths, subYears
+} from 'date-fns/esm';
+import { enUS, fr } from 'date-fns/esm/locale/index';
 import './range-datepicker-cell';
+
+const locales = { en: enUS, fr };
 
 /**
  * `range-datepicker-calendar`
@@ -252,9 +257,14 @@ class RangeDatepickerCalendar extends PolymerElement {
   }
 
   _localeChanged() {
-    if (moment.localeData(this.locale)) {
-      const dayNamesOfTheWeek = moment.localeData(this.locale).weekdaysMin();
-      const firstDayOfWeek = moment.localeData(this.locale).firstDayOfWeek();
+    if (locales[this.locale]) {
+      const dayNamesOfTheWeek = [];
+      let i = 0;
+      for (i; i < 7; i += 1) {
+        dayNamesOfTheWeek.push(locales[this.locale].localize.day(i, { width: 'short' }));
+      }
+
+      const firstDayOfWeek = locales[this.locale].options.weekStartsOn;
       const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
       const newDayNamesOfTheWeek = dayNamesOfTheWeek
         .slice()
@@ -270,26 +280,37 @@ class RangeDatepickerCalendar extends PolymerElement {
 
   _yearAndMonthChanged(year, month) {
     if (year && month) {
-      const startDate = moment([year, month - 1]).locale(this.locale);
-      const endDate = moment(startDate)
-        .locale(this.locale)
-        .endOf('month');
+      let monthMinus = `0${((month % 12))}`;
+      monthMinus = monthMinus.substring(monthMinus.length - 2);
+      if (monthMinus === '00') {
+        monthMinus = '01';
+      }
+      let startDateString = `01/${monthMinus}/${year}`;
+      let startDateFn = parse(startDateString, 'dd/MM/yyyy', new Date(), { awareOfUnicodeTokens: true });
+      const endDateFn = endOfMonth(startDateFn);
+      const endDateString = format(endDateFn, 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
+
+      const firstDayOfWeek = locales[this.locale].options.weekStartsOn;
 
       const rows = [];
       let columns = [];
 
       const lastDayOfWeek = 6;
 
-      while (startDate.format('DD/MM/YYYY') !== endDate.format('DD/MM/YYYY')) {
-        const dayNumber = startDate.weekday();
+      while (startDateString !== endDateString) {
+        let dayNumberFn = getDay(startDateFn) - firstDayOfWeek;
+        if (dayNumberFn < 0) {
+          dayNumberFn = 6;
+        }
 
-        columns.push({
+        const columnFn = {
           hover: false,
-          date: parseInt(startDate.format('X'), 10),
-          title: parseInt(startDate.format('D'), 10),
-        });
+          date: parseInt(format(startDateFn, 't'), 10),
+          title: parseInt(format(startDateFn, 'd', { awareOfUnicodeTokens: true }), 10),
+        };
+        columns.push(columnFn);
 
-        if (dayNumber === lastDayOfWeek) {
+        if (dayNumberFn === lastDayOfWeek) {
           for (let i = columns.length; i < lastDayOfWeek + 1; i += 1) {
             columns.unshift(0);
           }
@@ -297,14 +318,16 @@ class RangeDatepickerCalendar extends PolymerElement {
           columns = [];
         }
 
-        startDate.add(1, 'day');
+        startDateFn = addDays(startDateFn, 1);
+        startDateString = format(startDateFn, 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
 
-        if (startDate.format('DD/MM/YYYY') === endDate.format('DD/MM/YYYY')) {
-          columns.push({
+        if (startDateString === endDateString) {
+          const endColumnFn = {
             hover: false,
-            date: parseInt(startDate.format('X'), 10),
-            title: parseInt(startDate.format('D'), 10),
-          });
+            date: parseInt(format(startDateFn, 't'), 10),
+            title: parseInt(format(startDateFn, 'd', { awareOfUnicodeTokens: true }), 10),
+          };
+          columns.push(endColumnFn);
           for (let i = columns.length; i <= lastDayOfWeek; i += 1) {
             columns.push(0);
           }
@@ -317,9 +340,8 @@ class RangeDatepickerCalendar extends PolymerElement {
   }
 
   _computeCurrentMonthName(month, year) {
-    return moment(`${month}/${year}`, 'MM/YYYY')
-      .locale(this.locale)
-      .format('MMMM');
+    const dateFn = parse(`${month}/${year}`, 'MM/yyyy', new Date());
+    return format(dateFn, 'MMMM', { locale: locales[this.locale] });
   }
 
   _tdIsEnabled(day) {
@@ -360,15 +382,16 @@ class RangeDatepickerCalendar extends PolymerElement {
     monthName.classList.add('withTransition');
     monthName.classList.add('moveToLeft');
 
-    this.month = moment(this.month, 'MM')
-      .locale(this.locale)
-      .add(1, 'month')
-      .format('MM');
+    const month = parse(this.month, 'MM', new Date());
+    const monthPlusDate = addMonths(month, 1);
+    const monthPlusString = format(monthPlusDate, 'MM', { locale: locales[this.locale] });
+
+    this.month = monthPlusString;
     if (this.month === '01') {
-      this.year = moment(this.year, 'YYYY')
-        .locale(this.locale)
-        .add(1, 'year')
-        .format('YYYY');
+      const year = parse(this.year, 'yyyy', new Date());
+      const yearPlusDate = addYears(year, 1);
+      const yearPlusString = format(yearPlusDate, 'yyyy', { locale: locales[this.locale] });
+      this.year = yearPlusString;
     }
     this.dispatchEvent(new CustomEvent('next-month'));
 
@@ -401,15 +424,16 @@ class RangeDatepickerCalendar extends PolymerElement {
     monthName.classList.add('withTransition');
     monthName.classList.add('moveToRight');
 
-    this.month = moment(this.month, 'MM')
-      .locale(this.locale)
-      .subtract(1, 'month')
-      .format('MM');
+    const month = parse(this.month, 'MM', new Date());
+    const monthMinusDate = subMonths(month, 1);
+    const monthMinusString = format(monthMinusDate, 'MM', { locale: locales[this.locale] });
+
+    this.month = monthMinusString;
     if (this.month === '12') {
-      this.year = moment(this.year, 'YYYY')
-        .locale(this.locale)
-        .subtract(1, 'year')
-        .format('YYYY');
+      const year = parse(this.year, 'yyyy', new Date());
+      const yearMinusDate = subYears(year, 1);
+      const yearMinusString = format(yearMinusDate, 'yyyy', { locale: locales[this.locale] });
+      this.year = yearMinusString;
     }
     this.dispatchEvent(new CustomEvent('prev-month'));
 

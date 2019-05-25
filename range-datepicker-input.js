@@ -3,17 +3,21 @@ import { html } from '@polymer/polymer/lib/utils/html-tag';
 import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';
 import { templatize } from '@polymer/polymer/lib/utils/templatize';
 import { dom } from '@polymer/polymer/lib/legacy/polymer.dom';
-import moment from 'moment';
+import { format, parse } from 'date-fns/esm';
+import { enGB, fr } from 'date-fns/esm/locale/index';
 import '@polymer/paper-material/paper-material';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
 import './range-datepicker-calendar';
 import RangeDatepickerBehavior from './range-datepicker-behavior';
+
+const locales = { en: enGB, fr };
 
 class RangeDatepickerInput extends
   RangeDatepickerBehavior(LegacyElementMixin(PolymerElement)) {
   static get is() {
     return 'range-datepicker-input';
   }
+
   static get properties() {
     return {
       /**
@@ -150,7 +154,7 @@ class RangeDatepickerInput extends
       verticalOffset: {
         type: Number,
         value: 0,
-      }
+      },
     };
   }
 
@@ -246,9 +250,8 @@ class RangeDatepickerInput extends
 
   _formatDate(date) {
     if (date) {
-      return moment(date, 'X')
-        .locale(this.locale)
-        .format(this.dateFormat);
+      const dateFn = parse(date, 't', new Date());
+      return format(dateFn, this.dateFormat, { locale: locales[this.locale], awareOfUnicodeTokens: true });
     }
     return '';
   }
