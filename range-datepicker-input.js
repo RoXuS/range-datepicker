@@ -112,11 +112,11 @@ class RangeDatepickerInput extends
 
       /**
        * Format of the date.
-       * Default is DD/MM/YYYY.
+       * Default is dd/MM/yyyy.
        */
       dateFormat: {
         type: String,
-        value: 'DD/MM/YYYY',
+        value: 'dd/MM/yyyy',
       },
       /**
        * The orientation against which to align the dropdown content
