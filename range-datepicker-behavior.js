@@ -1,4 +1,4 @@
-import { format } from 'date-fns/esm';
+import format from 'date-fns/esm/format';
 // import en from 'date-fns/esm/locale/en';
 //
 // const locales = { en, fr };

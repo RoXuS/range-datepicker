@@ -7,10 +7,17 @@ import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/iron-icons/iron-icons';
 import '@polymer/paper-styles/paper-styles';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
-import {
-  format, parse, addDays, endOfMonth, getDay, addMonths, addYears, subMonths, subYears
-} from 'date-fns/esm';
-import { enUS, fr } from 'date-fns/esm/locale/index';
+import format from 'date-fns/esm/format';
+import parse from 'date-fns/esm/parse';
+import addDays from 'date-fns/esm/addDays';
+import endOfMonth from 'date-fns/esm/endOfMonth';
+import getDay from 'date-fns/esm/getDay';
+import addMonths from 'date-fns/esm/addMonths';
+import addYears from 'date-fns/esm/addYears';
+import subMonths from 'date-fns/esm/subMonths';
+import subYears from 'date-fns/esm/subYears';
+import enUS from 'date-fns/esm/locale/en-us';
+import fr from 'date-fns/esm/locale/fr';
 import './range-datepicker-cell';
 
 const locales = { en: enUS, fr };
