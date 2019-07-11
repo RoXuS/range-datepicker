@@ -16,7 +16,7 @@ import addMonths from 'date-fns/esm/addMonths';
 import addYears from 'date-fns/esm/addYears';
 import subMonths from 'date-fns/esm/subMonths';
 import subYears from 'date-fns/esm/subYears';
-import enUS from 'date-fns/esm/locale/en-us';
+import enUS from 'date-fns/esm/locale/en-US';
 import fr from 'date-fns/esm/locale/fr';
 import './range-datepicker-cell';
 
