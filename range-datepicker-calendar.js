@@ -287,11 +287,8 @@ class RangeDatepickerCalendar extends PolymerElement {
 
   _yearAndMonthChanged(year, month) {
     if (year && month) {
-      let monthMinus = `0${((month % 12))}`;
+      let monthMinus = month;
       monthMinus = monthMinus.substring(monthMinus.length - 2);
-      if (monthMinus === '00') {
-        monthMinus = '01';
-      }
       let startDateString = `01/${monthMinus}/${year}`;
       let startDateFn = parse(startDateString, 'dd/MM/yyyy', new Date(), { awareOfUnicodeTokens: true });
       const endDateFn = endOfMonth(startDateFn);
