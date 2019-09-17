@@ -10,7 +10,7 @@
   "name": "@doubletrade/range-datepicker",
   "main": "range-datepicker.js",
   "author": "Julien Rousseau <RoXuS>",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "devDependencies": {
     "@polymer/iron-component-page": "^4.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0",
