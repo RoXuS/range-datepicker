@@ -70,7 +70,6 @@ class RangeDatepickerCalendar extends PolymerElement {
         padding: 0;
         width: 38px;
         margin: 0;
-        height: 38px;
       }
 
       .monthName {
